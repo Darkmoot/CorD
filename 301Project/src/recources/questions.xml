@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE questions SYSTEM "questions.dtd">
+<questions>
+	<true-false-questions>
+		<question difficulty="2">
+			<ask>4 == 3</ask>
+			<answer>false</answer>
+		</question>
+
+		<question difficulty="1">
+			<ask>2 == 2</ask>
+			<answer>true</answer>
+		</question>
+	</true-false-questions>
+
+	<return-value-questions>
+		<question difficulty="3">
+			<ask>mylist = [1, 2, 3]\nmylist.pop()</ask>
+			<answer>3</answer>
+		</question>
+	</return-value-questions>
+</questions>
