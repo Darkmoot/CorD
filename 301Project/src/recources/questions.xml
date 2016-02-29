@@ -11,12 +11,36 @@
 			<ask>2 == 2</ask>
 			<answer>true</answer>
 		</question>
+		<question difficulty="1">
+			<ask >3 < 5</ask>
+			<answer >true</answer>
+		</question>
+		<question difficulty="1">
+			<ask >5 > 3</ask>
+			<answer >true</answer>
+		</question>
 	</true-false-questions>
 
 	<return-value-questions>
 		<question difficulty="3">
 			<ask>mylist = [1, 2, 3]\nmylist.pop()</ask>
 			<answer>3</answer>
+		</question>
+		<question difficulty="4">
+			<ask >for (i=1; i<=10; i++) {throw a fireball} how many fireballs are thrown?</ask>
+			<answer >10</answer>
+		</question>
+		<question difficulty="4">
+			<ask >for (i=0; i<10; i++) {throw a fireball} how many fireballs are thrown?</ask>
+			<answer >10</answer>
+		</question>
+		<question difficulty="3">
+			<ask >i = 0; while ( i < 5) { i += 1} After the last run of the while loop, what is the value of i?</ask>
+			<answer >5</answer>
+		</question>
+		<question difficulty="5">
+			<ask >i = 0; while ( i < 5) { i += 1} How many times will the while loop change the value of i?</ask>
+			<answer >5</answer>
 		</question>
 	</return-value-questions>
 </questions>
