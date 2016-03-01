@@ -184,7 +184,7 @@ public class Window extends javax.swing.JFrame {
     }    
     
     //Getter methods for different parts of the screen
-    public javax.swing.JPanel getGameArea() {
+    public GameArea getGameArea() {
     	return this.gArea;
     }
     
