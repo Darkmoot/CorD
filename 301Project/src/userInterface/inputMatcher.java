@@ -31,6 +31,6 @@ public class inputMatcher {
 	public void addToCurrentQuestions(Question q) {
 		this.currentQuestions.add(q);
 	}
-	
+	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
 }
