@@ -2,6 +2,8 @@ package userInterface;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.text.BadLocationException;
 
@@ -44,7 +46,7 @@ public class Window extends javax.swing.JFrame {
     	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
-        InputText = new javax.swing.JTextArea(">>>");
+        InputText = new javax.swing.JTextArea(">>> ");
         GameArea = new javax.swing.JPanel();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
@@ -57,7 +59,8 @@ public class Window extends javax.swing.JFrame {
         InputText.setRows(5);
         InputScroll.requestFocus();
         
-        //InputText.setCaretPosition(6); //set up the caret postion
+        InputText.setCaretPosition(4); //set up the caret postion
+        currentLinePrompt = InputText.getCaretPosition();
         //System.out.println(InputText.getCaretPosition());
         InputText.addKeyListener(new KeyListener() {
         	
@@ -67,7 +70,7 @@ public class Window extends javax.swing.JFrame {
 				
 				if (keyCode == KeyEvent.VK_ENTER) {
 					//System.out.println("I pressed the Enter button");
-					InputText.append("\n>>>");
+					InputText.append("\n>>> ");
 					e.consume(); //consume the regular action of enter
 					//Set up the line propt count to the current since enter resets to begginning of line
 					currentLinePrompt = InputText.getCaretPosition();
@@ -168,6 +171,13 @@ public class Window extends javax.swing.JFrame {
         );
         
         //InputText.requestFocus();
+        
+        this.addWindowFocusListener(new WindowAdapter() {
+            public void windowGainedFocus(WindowEvent e) {
+                InputText.requestFocusInWindow();
+            }
+        });
+        setVisible(true);
         pack();
     }    
     
@@ -200,15 +210,17 @@ public class Window extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String args[]) {
        
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Window().setVisible(true);
             }
         });
     }
+    */
 
                
 }
