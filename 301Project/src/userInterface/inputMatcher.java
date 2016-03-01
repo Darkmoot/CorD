@@ -3,6 +3,8 @@ package userInterface;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JTextArea;
+
 import backEnd.Question;
 
 public class inputMatcher {
@@ -70,6 +72,5 @@ public class inputMatcher {
 	
 	//Could add a piece of code to manage all questions generated in game and then put them 
 	//into the question field.
-	
 	
 }
