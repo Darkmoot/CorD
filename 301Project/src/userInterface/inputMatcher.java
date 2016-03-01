@@ -23,6 +23,7 @@ public class inputMatcher {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		//this.console = c;
+	}
 	
 	
 	public String getCommand() {
