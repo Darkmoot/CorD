@@ -20,7 +20,7 @@
 			<answer>true</answer>
 		</question>
 		<question difficulty="1">
-			<ask>print('orange' &gt; 'apple' or False)</ask>
+			<ask>print('oranges' &gt; 'apple' or False)</ask>
 			<answer>true</answer>
 		</question>
 		<question difficulty="2">
