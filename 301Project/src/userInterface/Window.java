@@ -7,6 +7,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.text.BadLocationException;
 
+import backEnd.GameArea;
+
 /**
  *
  * @author HisProdigalSon
@@ -19,7 +21,7 @@ public class Window extends javax.swing.JFrame {
 	private static final long serialVersionUID = -4902067103909394375L;
 	
     // Variables declaration - do not modify                     
-    private javax.swing.JPanel GameArea;
+    private GameArea gArea;
     private javax.swing.JScrollPane InputScroll;
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
@@ -47,7 +49,7 @@ public class Window extends javax.swing.JFrame {
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
         InputText = new javax.swing.JTextArea(">>> ");
-        GameArea = new javax.swing.JPanel();
+        gArea = new GameArea();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
 
@@ -124,9 +126,9 @@ public class Window extends javax.swing.JFrame {
         
         InputScroll.setViewportView(InputText);
 
-        javax.swing.GroupLayout GameAreaLayout = new javax.swing.GroupLayout(GameArea);
-        GameArea.setBackground(java.awt.Color.WHITE);
-        GameArea.setLayout(GameAreaLayout);
+        javax.swing.GroupLayout GameAreaLayout = new javax.swing.GroupLayout(gArea);
+        gArea.setBackground(java.awt.Color.WHITE);
+        gArea.setLayout(GameAreaLayout);
         GameAreaLayout.setHorizontalGroup(
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 526, Short.MAX_VALUE)
@@ -154,7 +156,7 @@ public class Window extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(QuestionScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(GameArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(gArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(InputScroll))
                 .addContainerGap())
         );
@@ -163,7 +165,7 @@ public class Window extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(GameArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(QuestionScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(InputScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +185,7 @@ public class Window extends javax.swing.JFrame {
     
     //Getter methods for different parts of the screen
     public javax.swing.JPanel getGameArea() {
-    	return this.GameArea;
+    	return this.gArea;
     }
     
     public javax.swing.JTextArea getInputText() {
