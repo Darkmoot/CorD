@@ -2,15 +2,9 @@ package backEnd;
 
 import java.util.Random;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.*;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
+import org.w3c.dom.*;
 
 public class QuestionCreator {
 	
@@ -23,17 +17,13 @@ public class QuestionCreator {
 		this.xpath = xpath;
 	}
 
-		
-	/**
-	 * Parses doc and gets a random question, then creates the Question object and returns it
-	 * @return Question - return a Question object
-	 */
 	public Question getRandomQuestion() {
 		
 		Question q = null;
 		try {
-			// Get the list of nodes satisfying the expression
-			XPathExpression expr = xpath.compile("//question");
+			// Get the list of nodes satisfying expr
+			String strepr = "//question";
+			XPathExpression expr = xpath.compile(strepr);
 			NodeList nl = (NodeList) expr.evaluate(this.doc, XPathConstants.NODESET);
 			Random r = new Random();
 			int index = r.nextInt(nl.getLength());
@@ -68,12 +58,7 @@ public class QuestionCreator {
 		return q;
 	}
 	
-	/**
-	 * Parses doc and gets a random question with difficulty: difficulty,
-	 * then creates the Question object and returns it
-	 * @param difficulty of the question to retrieve
-	 * @return a Question object
-	 */
+	
 	public Question getRandomQuestion(int difficulty) {
 		
 		Question q = null;
