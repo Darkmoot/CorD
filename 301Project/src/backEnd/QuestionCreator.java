@@ -32,9 +32,8 @@ public class QuestionCreator {
 		
 		Question q = null;
 		try {
-			// Get the list of nodes satisfying expr
-			String strepr = "//question";
-			XPathExpression expr = xpath.compile(strepr);
+			// Get the list of nodes satisfying the expression
+			XPathExpression expr = xpath.compile("//question");
 			NodeList nl = (NodeList) expr.evaluate(this.doc, XPathConstants.NODESET);
 			Random r = new Random();
 			int index = r.nextInt(nl.getLength());
