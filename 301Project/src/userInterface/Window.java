@@ -24,6 +24,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextArea QuestionText;
     
 	private int currentLinePrompt;
+	private int currentLine;
     private String lastInput;
     // End of variables declaration    
 	
@@ -74,10 +75,10 @@ public class Window extends javax.swing.JFrame {
 					 //System.out.println(InputText.getCaretPosition());
 					
 					try {
-						int currentline = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
+						currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
 						//System.out.println(currentline); //split by the >>> and then idex into by current line
 						//will not take alot of time complecity
-						lastInput = InputText.getText().split(">>>")[currentline];
+						lastInput = InputText.getText().split(">>>")[currentLine];
 						System.out.println(lastInput);
 						//update the last input variable
 					} catch (BadLocationException e1) {
@@ -168,7 +169,33 @@ public class Window extends javax.swing.JFrame {
         
         //InputText.requestFocus();
         pack();
-    }                     
+    }    
+    
+    //Getter methods for different parts of the screen
+    public javax.swing.JPanel getGameArea() {
+    	return this.GameArea;
+    }
+    
+    public javax.swing.JTextArea getInputText() {
+    	return this.InputText;
+    	
+    }
+    
+    public javax.swing.JTextArea getQuestionText() {
+    	return this.QuestionText;
+    	
+    }
+    
+    public String getLastInput() {
+    	return this.lastInput;
+    }
+    
+    public int getCurrentLine() {
+    	return this.currentLine;
+    }
+    
+    
+    
 
     /**
      * @param args the command line arguments
