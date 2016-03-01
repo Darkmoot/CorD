@@ -3,6 +3,7 @@ package backEnd;
 import java.io.File;
 
 import javax.xml.parsers.*;
+import javax.xml.xpath.*;
 
 import org.w3c.dom.*;
 
@@ -16,21 +17,26 @@ public class Test {
 //			System.out.println(input.getAbsolutePath());
 //			System.out.println(input.exists());
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setValidating(true);
 			DocumentBuilder builder = factory.newDocumentBuilder();
+			System.out.println(builder.isValidating());
 			Document doc = builder.parse(input);
-			doc.getDocumentElement().normalize();
+			
+			XPathFactory xpathfactory = XPathFactory.newInstance();
+			XPath xpath = xpathfactory.newXPath();
+			XPathExpression ex = xpath.compile("//question[@difficulty=1]");
 			// Gets root element
-			System.out.println("root: " + doc.getDocumentElement().getNodeName());
+//			System.out.println("root: " + doc.getDocumentElement().getNodeName());
 			
 			// Get all question elements
-			NodeList nList = doc.getElementsByTagName("question");
+			NodeList nList = (NodeList) ex.evaluate(doc, XPathConstants.NODESET);
 			System.out.println(nList.getLength());
 			
 			System.out.println("------------------------");
 			
 			int i;
 			for (i = 0; i < nList.getLength(); i++) {
-				Node node = nList.item(i);
+				Element node = (Element) nList.item(i);
 				
 				// Print out the type of question
 //				System.out.println("type: " + node.getParentNode().getNodeName());
@@ -40,8 +46,8 @@ public class Test {
 				
 				// Even indexes are the element names, odd indices are the text of the previous element
 				// So based on current xml, childs[1] gets the question, and childs[3] gets the answer
-				String question = childs.item(1).getTextContent().replace("\\n", "\n");
-				String answer = childs.item(3).getTextContent().replace("\\n", "\n");
+				String question = childs.item(1).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
+				String answer = childs.item(3).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
 				int difficulty = Integer.parseInt(node.getAttributes().getNamedItem("difficulty").getNodeValue());
 				
 				Question q;
