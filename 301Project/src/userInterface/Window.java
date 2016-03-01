@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.text.BadLocationException;
 
+import backEnd.Enemy;
 import backEnd.GameArea;
 
 /**
@@ -138,13 +139,11 @@ public class Window extends javax.swing.JFrame {
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-<<<<<<< HEAD
-        
+
         //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();		
-=======
->>>>>>> refs/remotes/csc301-winter-2016/master
+
 
         QuestionText.setColumns(20);
         QuestionText.setRows(5);
