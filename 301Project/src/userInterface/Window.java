@@ -7,7 +7,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.text.BadLocationException;
 
-import backEnd.Enemy;
 import backEnd.GameArea;
 
 /**
@@ -139,9 +138,6 @@ public class Window extends javax.swing.JFrame {
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        
-		gArea.addEnemy(new Enemy(10, 10));
-		gArea.repaint();		
 
         QuestionText.setColumns(20);
         QuestionText.setRows(5);
@@ -188,7 +184,7 @@ public class Window extends javax.swing.JFrame {
     }    
     
     //Getter methods for different parts of the screen
-    public GameArea getGameArea() {
+    public javax.swing.JPanel getGameArea() {
     	return this.gArea;
     }
     
