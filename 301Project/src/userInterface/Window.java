@@ -139,6 +139,9 @@ public class Window extends javax.swing.JFrame {
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+        
+		gArea.addEnemy(new Enemy(10, 10));
+		gArea.repaint();		
 
         //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
@@ -190,7 +193,7 @@ public class Window extends javax.swing.JFrame {
     }    
     
     //Getter methods for different parts of the screen
-    public javax.swing.JPanel getGameArea() {
+    public GameArea getGameArea() {
     	return this.gArea;
     }
     
@@ -212,7 +215,11 @@ public class Window extends javax.swing.JFrame {
     	return this.currentLine;
     }
     
-    
+   // currentLinePrompt = InputText.getCaretPosition();
+    //added this setter to properly go to the next line
+    public void setCurrentLinePrompt() {
+    	this.currentLinePrompt = InputText.getCaretPosition();;
+    }
     
 
     /**
