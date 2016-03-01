@@ -1,5 +1,10 @@
 package userInterface;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.text.BadLocationException;
+
 /**
  *
  * @author HisProdigalSon
@@ -17,6 +22,10 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
     private javax.swing.JTextArea QuestionText;
+    
+	private int currentLinePrompt;
+	private int currentLine;
+    private String lastInput;
     // End of variables declaration    
 	
 	/**
@@ -35,15 +44,81 @@ public class Window extends javax.swing.JFrame {
     	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
-        InputText = new javax.swing.JTextArea();
+        InputText = new javax.swing.JTextArea(">>>");
         GameArea = new javax.swing.JPanel();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+       
+        
+        InputText.setEditable(true);
         InputText.setColumns(20);
         InputText.setRows(5);
+        InputScroll.requestFocus();
+        
+        //InputText.setCaretPosition(6); //set up the caret postion
+        //System.out.println(InputText.getCaretPosition());
+        InputText.addKeyListener(new KeyListener() {
+        	
+        	@Override
+			public void keyPressed(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				
+				if (keyCode == KeyEvent.VK_ENTER) {
+					//System.out.println("I pressed the Enter button");
+					InputText.append("\n>>>");
+					e.consume(); //consume the regular action of enter
+					//Set up the line propt count to the current since enter resets to begginning of line
+					currentLinePrompt = InputText.getCaretPosition();
+					
+					 //System.out.println(InputText.getCaretPosition());
+					
+					try {
+						currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
+						//System.out.println(currentline); //split by the >>> and then idex into by current line
+						//will not take alot of time complecity
+						lastInput = InputText.getText().split(">>>")[currentLine];
+						System.out.println(lastInput);
+						//update the last input variable
+					} catch (BadLocationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
+				if (keyCode == KeyEvent.VK_BACK_SPACE) {
+					System.out.println("I pressed the delete button");
+					//If the current caret is equal to the current line prompt:
+					//it means we are at the beginning of undeleteable section of the shell
+					if (InputText.getCaretPosition() == currentLinePrompt) {
+						e.consume(); //consume delete aka dont delete text
+					}
+				}
+				
+				if (keyCode == KeyEvent.VK_A) {
+					System.out.println(InputText.getCaretPosition());
+				}
+        	}
+        	
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			
+        	
+        });
+        
+        
         InputScroll.setViewportView(InputText);
 
         javax.swing.GroupLayout GameAreaLayout = new javax.swing.GroupLayout(GameArea);
@@ -91,9 +166,36 @@ public class Window extends javax.swing.JFrame {
                 .addComponent(InputScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
+        
+        //InputText.requestFocus();
         pack();
-    }                     
+    }    
+    
+    //Getter methods for different parts of the screen
+    public javax.swing.JPanel getGameArea() {
+    	return this.GameArea;
+    }
+    
+    public javax.swing.JTextArea getInputText() {
+    	return this.InputText;
+    	
+    }
+    
+    public javax.swing.JTextArea getQuestionText() {
+    	return this.QuestionText;
+    	
+    }
+    
+    public String getLastInput() {
+    	return this.lastInput;
+    }
+    
+    public int getCurrentLine() {
+    	return this.currentLine;
+    }
+    
+    
+    
 
     /**
      * @param args the command line arguments
