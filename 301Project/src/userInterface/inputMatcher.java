@@ -42,12 +42,12 @@ public class inputMatcher {
 	public void matchAnswer(String answer) {
 		for (Question q: currentQuestions) {
 			if (q.getAnswer() == answer) {
-				console.append("\nCorrect answer");
+				console.append("\nCorrect answer\n>>> ");
 				window.setCurrentLinePrompt();
 				//disable question
 			}
 			else {
-				console.append("\nIncorrect answer");
+				console.append("\nIncorrect answer\n>>> ");
 				window.setCurrentLinePrompt();
 				//don't disable question
 			}
