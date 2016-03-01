@@ -140,6 +140,7 @@ public class Window extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
         
+        //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();		
 
