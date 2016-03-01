@@ -9,18 +9,24 @@ import org.w3c.dom.*;
 public class QuestionCreator {
 	
 	Document doc;
+	XPath xpath;
 	
 	
-	public QuestionCreator(Document doc) {
+	public QuestionCreator(Document doc, XPath xpath) {
 		this.doc = doc;
+		this.xpath = xpath;
 	}
 
 
-	public Question getRandomQuestion(XPathExpression expr) {
+	
+	
+	public Question getRandomQuestion(int difficulty) {
 		
 		Question q = null;
 		try {
 			// Get the list of nodes satisfying expr
+			String strepr = "//question[@difficulty=" + difficulty + "]";
+			XPathExpression expr = xpath.compile(strepr);
 			NodeList nl = (NodeList) expr.evaluate(this.doc, XPathConstants.NODESET);
 			Random r = new Random();
 			int index = r.nextInt(nl.getLength());
@@ -36,7 +42,7 @@ public class QuestionCreator {
 			// TODO: get hints as well
 			String question = childs.item(1).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
 			String answer = childs.item(3).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
-			int difficulty = Integer.parseInt(e.getAttributes().getNamedItem("difficulty").getNodeValue());
+			
 			
 			// TODO: find reason to have different question implementations, as currently no reason
 			if (e.getParentNode().getNodeName() == "true-false-questions") {
