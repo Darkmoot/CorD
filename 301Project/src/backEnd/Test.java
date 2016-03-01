@@ -3,6 +3,7 @@ package backEnd;
 import java.io.File;
 
 import javax.xml.parsers.*;
+import javax.xml.xpath.*;
 
 import org.w3c.dom.*;
 
@@ -20,19 +21,22 @@ public class Test {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			System.out.println(builder.isValidating());
 			Document doc = builder.parse(input);
-//			doc.getDocumentElement().normalize();
+			
+			XPathFactory xpathfactory = XPathFactory.newInstance();
+			XPath xpath = xpathfactory.newXPath();
+			XPathExpression ex = xpath.compile("//question[@difficulty=1]");
 			// Gets root element
-			System.out.println("root: " + doc.getDocumentElement().getNodeName());
+//			System.out.println("root: " + doc.getDocumentElement().getNodeName());
 			
 			// Get all question elements
-			NodeList nList = doc.getElementsByTagName("question");
+			NodeList nList = (NodeList) ex.evaluate(doc, XPathConstants.NODESET);
 			System.out.println(nList.getLength());
 			
 			System.out.println("------------------------");
 			
 			int i;
 			for (i = 0; i < nList.getLength(); i++) {
-				Node node = nList.item(i);
+				Element node = (Element) nList.item(i);
 				
 				// Print out the type of question
 //				System.out.println("type: " + node.getParentNode().getNodeName());
