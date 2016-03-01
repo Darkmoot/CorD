@@ -203,11 +203,7 @@ public class Window extends javax.swing.JFrame {
     public int getCurrentLine() {
     	return this.currentLine;
     }
-   
-    //added a method to set the caret position
-    public void setCurrentLinePrompt() {
-    	this.currentLine = InputText.getCaretPosition();
-    }
+    
     
     
 
