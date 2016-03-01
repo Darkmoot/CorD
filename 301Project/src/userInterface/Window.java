@@ -170,6 +170,11 @@ public class Window extends javax.swing.JFrame {
 		gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();		
 
+        //Testing adding enemy and painting it on to the screen
+		gArea.addEnemy(new Enemy(10, 10));
+		gArea.repaint();		
+
+
         QuestionText.setColumns(20);
         QuestionText.setRows(5);
         QuestionText.setLineWrap(true);
