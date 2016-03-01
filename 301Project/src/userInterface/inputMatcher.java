@@ -1,14 +1,16 @@
-package backEnd;
+package userInterface;
 
 import java.util.Set;
 
-public class InputMatcher {
+import backEnd.Question;
+
+public class inputMatcher {
 	
 	private String command;
 	
 	private Set<Question> currentQuestions;
 	
-	public InputMatcher(String command, Set<Question> currentQuestions) {
+	public inputMatcher(String command, Set<Question> currentQuestions) {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		
