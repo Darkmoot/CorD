@@ -31,17 +31,15 @@ public class Game {
 			XPathFactory xpathfactory = XPathFactory.newInstance();
 			XPath xpath = xpathfactory.newXPath();
 			// Creates a new question creator
-			QuestionCreator qc = new QuestionCreator(doc);
+			QuestionCreator qc = new QuestionCreator(doc, xpath);
 			
 			// Getting 1 question for each difficulty level
 			// This will need to be changed once we implement levels, and start picking question difficulty based on level
 			for (int diff = 1; diff <= 5; diff++) {
 				// Compiles XPath expression that gets questions of a certain difficulty
-				String strepr = "//question[@difficulty=" + diff + "]";
-				XPathExpression ex = xpath.compile(strepr);
 				
 				// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
-				Question q = qc.getRandomQuestion(ex);
+				Question q = qc.getRandomQuestion(diff);
 				// TODO: this should be printed to the window.
 				System.out.println(q);
 				System.out.println("\n");
