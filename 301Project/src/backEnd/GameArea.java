@@ -17,6 +17,7 @@ public class GameArea extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
+		super.paint(g);
 		for (Enemy enemy : enemies) {
 			//Add two more parameters after getYval to set image dimensions
 			g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), null);
