@@ -206,11 +206,7 @@ public class Window extends javax.swing.JFrame {
     	return this.currentLine;
     }
     
-   // currentLinePrompt = InputText.getCaretPosition();
-    //added this setter to properly go to the next line
-    public void setCurrentLinePrompt() {
-    	this.currentLinePrompt = InputText.getCaretPosition();;
-    }
+    
     
 
     /**
