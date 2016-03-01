@@ -7,8 +7,6 @@ public interface Question {
 	
 	public int getDifficulty();
 	
-//	public String getHint();
-	
 	@Override
 	public abstract String toString();
 
