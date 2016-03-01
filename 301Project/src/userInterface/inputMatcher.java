@@ -3,8 +3,6 @@ package userInterface;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JTextArea;
-
 import backEnd.Question;
 
 public class inputMatcher {
@@ -16,7 +14,6 @@ public class inputMatcher {
 	private Set<Question> currentQuestions;
 	
 	
-	
 	private JTextArea console; //the actual console
 	
 	
@@ -24,7 +21,6 @@ public class inputMatcher {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		//this.console = c;
-	}
 	
 	
 	public String getCommand() {
