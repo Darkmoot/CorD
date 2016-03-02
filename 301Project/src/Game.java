@@ -44,7 +44,8 @@ public class Game {
 			public void run() {
 				ArrayList<Player> players = w.getGameArea().getPlayers();
 				for (Player player : players) {
-					player.moveDown(100);
+					System.out.println("Check");
+					System.out.println(player);
 				}
 				w.getGameArea().repaint();
 			}
