@@ -18,6 +18,8 @@ public class inputMatcher {
 	
 	private JTextArea console; //the actual console
 	
+	private int score = 0;
+	
 	
 	public inputMatcher(String command, HashSet<Question> currentQuestions) {
 		this.command = command;
@@ -40,6 +42,10 @@ public class inputMatcher {
 		return this.currentQuestions;
 	}
 	
+	public int getScore() {
+		return this.score;
+	}
+	
 	//Add a newly generated question into the set of current questions
 	public void addToCurrentQuestions(Question q) {
 		System.out.println(this.currentQuestions.size());
@@ -51,18 +57,15 @@ public class inputMatcher {
 		System.out.println("nothing");
 	}
 	
-	public void getScore(int score, Question currentQuestion) {
-		score += currentQuestion.getDifficulty();
-	}
-	
 	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
-	public boolean matchAnswer(String answer, int score) {
+	public boolean matchAnswer(String answer) {
 		
 		System.out.println(answer);
 		for (Question q: currentQuestions) {
 			if (q.getAnswer().equalsIgnoreCase(answer)) {
-				getScore(score, q);
+				// if correct answer, increase score
+				score += q.getDifficulty();
 				return true;
 				//console.append("\nCorrect answer\n>>> ");
 				//window.setCurrentLinePrompt();

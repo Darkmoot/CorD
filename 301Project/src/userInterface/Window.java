@@ -59,7 +59,6 @@ public class Window extends javax.swing.JFrame {
     	this.IMatcher = new inputMatcher("none", new HashSet<Question>());
     	this.currentLine = 0;
     	
-    	int score = 0;
     	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
@@ -115,20 +114,19 @@ public class Window extends javax.swing.JFrame {
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 					//IMatcher.donothing();
-					boolean result = IMatcher.matchAnswer(lastInput, score);
+					boolean result = IMatcher.matchAnswer(lastInput);
 
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
 						currentLine++;
 					}
-					else if (IMatcher.matchAnswer( lastInput, score)) {
+					else if (IMatcher.matchAnswer(lastInput)) {
 					//	System.out.println(result);
-						//System.out.print(score);
 						InputText.append("\nCorrect Answer ");
-						currentLine++;
+						currentLine +=1 ;
 						
 						InputText.append("\nScore: ");
-						InputText.append(Integer.toString(score));
+						InputText.append(Integer.toString(IMatcher.getScore()));
 						InputText.append("\n>>> ");
 						currentLine+= 2;
 						
