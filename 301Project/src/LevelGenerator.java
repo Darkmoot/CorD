@@ -59,19 +59,6 @@ public class LevelGenerator {
 			//Generate questions to text
 			
 			
-			/*
-			// Getting 1 question for each difficulty level
-			// This will need to be changed once we implement levels, and start picking question difficulty based on level
-			for (int diff = 1; diff <= 5; diff++) {
-				// Compiles XPath expression that gets questions of a certain difficulty
-				
-				// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
-				Question q = qc.getRandomQuestion(diff);
-				// TODO: this should be printed to the window.
-				System.out.println(q);
-				System.out.println("\n");
-			}
-		*/
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -87,6 +74,7 @@ public class LevelGenerator {
 	//Add code for other difficulties or add a random function
 	
 	
+	//spawn random questions of a specific difficulty
 	public void spawnQuestion(int diff) {
 		
 			// Compiles XPath expression that gets questions of a certain difficulty
@@ -104,6 +92,7 @@ public class LevelGenerator {
 			
 	}
 	
+	//spawn random questions 
 	public void spawnQuestion() {
 		
 		// Compiles XPath expression that gets questions of a certain difficulty

@@ -23,45 +23,7 @@ public class Game {
 		Window w = new Window();
 		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
 		lg.Question1();
-		/*
-		try {
-			// Open up the XML database
-			File input = new File("src" + File.separator + "recources" + File.separator + "questions.xml");
-			// Parse it, and store it as a document
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setValidating(true);
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(input);
-			// Set up document for reading with XPath
-			XPathFactory xpathfactory = XPathFactory.newInstance();
-			XPath xpath = xpathfactory.newXPath();
-			// Creates a new question creator
-			QuestionCreator qc = new QuestionCreator(doc, xpath);
-			
-			
-			//Generate questions to text
-			
-			
-			
-			// Getting 1 question for each difficulty level
-			// This will need to be changed once we implement levels, and start picking question difficulty based on level
-			for (int diff = 1; diff <= 5; diff++) {
-				// Compiles XPath expression that gets questions of a certain difficulty
-				
-				// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
-				Question q = qc.getRandomQuestion(diff);
-				// TODO: this should be printed to the window.
-				System.out.println(q);
-				System.out.println("\n");
-			}
 		
-		}
-		
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	*/
 		
 		//This section is to test making the enemies move and repaint the GameArea
 		Timer timer = new Timer();
