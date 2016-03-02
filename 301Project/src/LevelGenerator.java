@@ -84,6 +84,8 @@ public class LevelGenerator {
 	public void Question1() {
 		timer.schedule (spawnQuestion, 0l, 1000*10);
 	}
+	//Add code for other difficulties or add a random function
+	
 	
 	public void spawnQuestion(int diff) {
 		
@@ -96,6 +98,9 @@ public class LevelGenerator {
 			this.matcher.addToCurrentQuestions(q);
 			//add to the question window.
 			this.QuestionPage.append("\n" + q.toString() + "\n");
+			
+			//Can also use Default Caret Bottom.
+			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 			
 	}
 	

@@ -1,18 +1,18 @@
 package userInterface;
 
-import java.awt.event.KeyEvent;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
 
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
 
 import backEnd.Enemy;
 import backEnd.GameArea;
 import backEnd.Question;
-
 
 /**
  *
@@ -36,7 +36,6 @@ public class Window extends javax.swing.JFrame {
 	private int currentLine;
     private String lastInput;
     
-    
     //the inputMatcher
     private inputMatcher IMatcher;
    
@@ -59,14 +58,13 @@ public class Window extends javax.swing.JFrame {
     	this.IMatcher = new inputMatcher("none", new HashSet<Question>());
     	this.currentLine = 0;
     	
-    	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
         InputText = new javax.swing.JTextArea(">>> ");
         gArea = new GameArea();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
-        
+       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -86,35 +84,14 @@ public class Window extends javax.swing.JFrame {
 				int keyCode = e.getKeyCode();
 				
 				if (keyCode == KeyEvent.VK_ENTER) {
-					//System.out.println("I pressed the Enter button");
 					
-					// InputText.append("\n>>> ");
 					e.consume(); //consume the regular action of enter
-					//Set up the line propt count to the current since enter resets to begginning of line
-					//currentLinePrompt = InputText.getCaretPosition();
-					
-					 //System.out.println(InputText.getCaretPosition());
-					
-					//try {
-						
-						//currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
-						
-						//System.out.println(currentline); //split by the >>> and then idex into by current line
-						//will not take alot of time complecity
-						//System.out.println(lastInput);
-						//update the last input variable
-				//	} catch (BadLocationException e1) {
-					//	e1.printStackTrace();
-					//}
-					
-					
-					//System.out.println(currentLine);
-					//System.out.println(InputText.getText().split("\n").length);
+				
 					
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 					//IMatcher.donothing();
-					boolean result = IMatcher.matchAnswer(lastInput);
+					//boolean result = IMatcher.matchAnswer(lastInput);
 
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
@@ -122,15 +99,8 @@ public class Window extends javax.swing.JFrame {
 					}
 					else if (IMatcher.matchAnswer(lastInput)) {
 					//	System.out.println(result);
-						InputText.append("\nCorrect Answer ");
-						currentLine +=1 ;
-						
-						InputText.append("\nScore: ");
-						InputText.append(Integer.toString(IMatcher.getScore()));
-						InputText.append("\n>>> ");
+						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
-						
-						
 					} 
 					else {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -198,7 +168,12 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setLineWrap(true);
         QuestionText.setWrapStyleWord(false);
         QuestionText.setEditable(false);
+        
+        
+        
         QuestionScroll.setViewportView(QuestionText);
+        
+  
         
         QuestionText.setLineWrap(true);
         QuestionText.setWrapStyleWord(true);
@@ -293,3 +268,4 @@ public class Window extends javax.swing.JFrame {
 
                
 }
+
