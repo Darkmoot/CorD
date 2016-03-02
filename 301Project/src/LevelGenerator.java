@@ -94,7 +94,7 @@ public class LevelGenerator {
 	
 	//spawn random questions 
 	public void spawnQuestion() {
-		
+
 		// Compiles XPath expression that gets questions of a certain difficulty
 		
 		// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
@@ -108,6 +108,24 @@ public class LevelGenerator {
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
-}
+	
+	}
+	
+	//cancels the input timertask
+	public void stopWave(TimerTask t) {
+		t.cancel();
+		
+	}
+	
+	//give a delay to the in
+	public void delayWave(TimerTask t,long l ) throws InterruptedException {
+		try {
+			t.wait(l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
 	
 }
