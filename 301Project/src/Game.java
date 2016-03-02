@@ -22,7 +22,7 @@ public class Game {
 		
 		Window w = new Window();
 		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
-		lg.spawnQuestion(1);
+		lg.Question1();
 		/*
 		try {
 			// Open up the XML database

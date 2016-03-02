@@ -32,12 +32,11 @@ public class LevelGenerator {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				
+				spawnQuestion(1);	
 			}
-			
 		
 		};
+		
 		
 		
 		try {
@@ -82,6 +81,9 @@ public class LevelGenerator {
 	
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
 	//but also sets them up
+	public void Question1() {
+		timer.schedule (spawnQuestion, 0l, 1000*10);
+	}
 	
 	public void spawnQuestion(int diff) {
 		
