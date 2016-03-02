@@ -36,6 +36,7 @@ public class Window extends javax.swing.JFrame {
     
     //the inputMatcher
     private inputMatcher IMatcher;
+   
     
     // End of variables declaration    
 	
@@ -61,6 +62,7 @@ public class Window extends javax.swing.JFrame {
         gArea = new GameArea();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
+       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -186,6 +188,9 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setWrapStyleWord(false);
         QuestionText.setEditable(false);
         QuestionScroll.setViewportView(QuestionText);
+        
+        QuestionText.setLineWrap(true);
+        QuestionText.setWrapStyleWord(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,6 +258,11 @@ public class Window extends javax.swing.JFrame {
     public void setCurrentLinePrompt() {
     	this.currentLinePrompt = InputText.getCaretPosition();;
     }
+    
+    public inputMatcher getInputMatcher() {
+    	return this.IMatcher;
+    }
+    
     
 
     /**
