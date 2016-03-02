@@ -12,12 +12,24 @@
 			<answer>true</answer>
 		</question>
 		<question difficulty="1">
-			<ask >3 < 5</ask>
-			<answer >true</answer>
+			<ask>3 &lt; 5</ask>
+			<answer>true</answer>
 		</question>
 		<question difficulty="1">
-			<ask >5 > 3</ask>
-			<answer >true</answer>
+			<ask>5 &gt; 3</ask>
+			<answer>true</answer>
+		</question>
+		<question difficulty="1">
+			<ask>print('orange' &gt; 'apple' or False)</ask>
+			<answer>true</answer>
+		</question>
+		<question difficulty="2">
+			<ask>cloudy = "True"\nnum = 0\nprint(cloudy or 5/num &gt; 3)</ask>
+			<answer>true</answer>
+		</question>
+		<question difficulty="2">
+			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\nprint(a_list == b_list)</ask>
+			<answer>false</answer>
 		</question>
 	</true-false-questions>
 
@@ -27,20 +39,24 @@
 			<answer>3</answer>
 		</question>
 		<question difficulty="4">
-			<ask >for (i=1; i<=10; i++) {throw a fireball} how many fireballs are thrown?</ask>
-			<answer >10</answer>
+			<ask>for (i=1; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
+			<answer>10</answer>
 		</question>
 		<question difficulty="4">
-			<ask >for (i=0; i<10; i++) {throw a fireball} how many fireballs are thrown?</ask>
-			<answer >10</answer>
+			<ask>for (i=0; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
+			<answer>10</answer>
 		</question>
 		<question difficulty="3">
-			<ask >i = 0; while ( i < 5) { i += 1} After the last run of the while loop, what is the value of i?</ask>
-			<answer >5</answer>
+			<ask>i = 0; while ( i &lt; 5)\n\t{ i += 1} After the last run of the while loop, what is the value of i?</ask>
+			<answer>5</answer>
 		</question>
 		<question difficulty="5">
-			<ask >i = 0; while ( i < 5) { i += 1} How many times will the while loop change the value of i?</ask>
-			<answer >5</answer>
+			<ask>i = 0; while ( i &lt; 5)\n\t{ i += 1} How many times will the while loop change the value of i?</ask>
+			<answer>5</answer>
+		</question>
+		<question difficulty="3">
+			<ask>print(20 / 2 ** 2 + 3) </ask>
+			<answer>8.0</answer>
 		</question>
 	</return-value-questions>
 </questions>
