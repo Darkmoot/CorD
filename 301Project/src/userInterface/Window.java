@@ -36,6 +36,7 @@ public class Window extends javax.swing.JFrame {
     
     //the inputMatcher
     private inputMatcher IMatcher;
+   
     
     // End of variables declaration    
 	
@@ -53,7 +54,7 @@ public class Window extends javax.swing.JFrame {
      */
     private void initComponents() { 
     	this.IMatcher = new inputMatcher("none", new HashSet<Question>());
-    	
+    	this.currentLine = 0;
     	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
@@ -61,6 +62,7 @@ public class Window extends javax.swing.JFrame {
         gArea = new GameArea();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
+       
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -89,32 +91,40 @@ public class Window extends javax.swing.JFrame {
 					
 					 //System.out.println(InputText.getCaretPosition());
 					
-					try {
+					//try {
 						
-						currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
+						//currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
+						
 						//System.out.println(currentline); //split by the >>> and then idex into by current line
 						//will not take alot of time complecity
 						//System.out.println(lastInput);
 						//update the last input variable
-					} catch (BadLocationException e1) {
-						e1.printStackTrace();
-					}
+				//	} catch (BadLocationException e1) {
+					//	e1.printStackTrace();
+					//}
 					
-					lastInput = InputText.getText().split(">>>")[currentLine].trim();
+					
+					//System.out.println(currentLine);
+					//System.out.println(InputText.getText().split("\n").length);
+					
+					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 					//IMatcher.donothing();
-					boolean result = IMatcher.matchAnswer( InputText.getText().split(">>>")[currentLine].trim());
+					boolean result = IMatcher.matchAnswer(lastInput);
 
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
+						currentLine++;
 					}
-					else if (IMatcher.matchAnswer( InputText.getText().split(">>>")[currentLine].trim())) {
-						System.out.println(result);
+					else if (IMatcher.matchAnswer( lastInput)) {
+					//	System.out.println(result);
 						InputText.append("\nCorrect Answer\n>>> ");
-					}
+						currentLine+= 2;
+					} 
 					else {
 						InputText.append("\nIncorrect Answer\n>>> ");
-						System.out.println(result);
+					//	System.out.println(result);
+						currentLine+= 2;
 					} 
 					
 					currentLinePrompt = InputText.getCaretPosition();
@@ -178,6 +188,9 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setWrapStyleWord(false);
         QuestionText.setEditable(false);
         QuestionScroll.setViewportView(QuestionText);
+        
+        QuestionText.setLineWrap(true);
+        QuestionText.setWrapStyleWord(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,6 +258,11 @@ public class Window extends javax.swing.JFrame {
     public void setCurrentLinePrompt() {
     	this.currentLinePrompt = InputText.getCaretPosition();;
     }
+    
+    public inputMatcher getInputMatcher() {
+    	return this.IMatcher;
+    }
+    
     
 
     /**
