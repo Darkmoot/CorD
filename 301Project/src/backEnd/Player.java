@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Player {
+public class Player implements MovingSprite {
 	
 	//The png image representation of our enemy
 	private BufferedImage image;
@@ -17,7 +17,7 @@ public class Player {
 		
 	public Player(int x, int y) {
 		try {
-			image = ImageIO.read(getClass(). getResourceAsStream("/zombie.png"));
+			image = ImageIO.read(getClass(). getResourceAsStream("/player.png"));
 		}
 		catch(IOException e) {
 			e.printStackTrace();
