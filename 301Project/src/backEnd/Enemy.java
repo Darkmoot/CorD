@@ -16,6 +16,7 @@ public class Enemy implements MovingSprite {
 	private boolean paused;
 	
 	public Enemy(int x, int y) {
+		//Current image used licenced under Creative Commons 3.0.  Attribution to: Irina Mir (irmirx)
 		try {
 			image = ImageIO.read(getClass(). getResourceAsStream("/zombie.png"));
 		}
