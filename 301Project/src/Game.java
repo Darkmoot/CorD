@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -50,6 +53,20 @@ public class Game {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		//This section is to test making the enemies move and repaint the GameArea
+		Timer timer = new Timer();
+		
+		timer.schedule(new TimerTask() {
+			public void run() {
+				ArrayList<Enemy> enemies = w.getGameArea().getEnemies();
+				for (Enemy enemy : enemies) {
+					enemy.moveDown(10);
+				}
+				w.getGameArea().repaint();
+			}
+		}, 0, 1*1000);
 		
 	}
 	
