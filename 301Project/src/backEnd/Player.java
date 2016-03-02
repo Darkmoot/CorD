@@ -46,9 +46,5 @@ public class Player implements MovingSprite {
 	public void setYval(int yval) {
 		this.yval = yval;
 	}
-		
-	public void moveDown(int num) {
-		yval += num;
-	}
 
 }
