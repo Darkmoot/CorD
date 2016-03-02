@@ -36,7 +36,7 @@ public class Game {
 				}
 				w.getGameArea().repaint();
 			}
-		}, 0, 1*1000);
+		}, 0, 1*1000); //0 is the delay before the timerTask starts running, 1*1000 is how often it goes off (meaning it goes off every second)
 		
 		Timer t = new Timer();
 		
@@ -44,7 +44,8 @@ public class Game {
 			public void run() {
 				ArrayList<Player> players = w.getGameArea().getPlayers();
 				for (Player player : players) {
-					player.moveDown(100);
+					System.out.println("Check");
+					System.out.println(player);
 				}
 				w.getGameArea().repaint();
 			}
