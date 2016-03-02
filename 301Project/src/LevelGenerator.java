@@ -32,7 +32,7 @@ public class LevelGenerator {
 
 			@Override
 			public void run() {
-				spawnQuestion(1);	
+				spawnQuestion();	
 			}
 		
 		};
@@ -103,5 +103,22 @@ public class LevelGenerator {
 			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 			
 	}
+	
+	public void spawnQuestion() {
+		
+		// Compiles XPath expression that gets questions of a certain difficulty
+		
+		// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
+		Question q = qc.getRandomQuestion();
+		
+		//add to the matcher
+		this.matcher.addToCurrentQuestions(q);
+		//add to the question window.
+		this.QuestionPage.append("\n" + q.toString() + "\n");
+		
+		//Can also use Default Caret Bottom.
+		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+		
+}
 	
 }
