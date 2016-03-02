@@ -21,7 +21,9 @@ public class Game {
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		
+		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
+		lg.Question1();
+		/*
 		try {
 			// Open up the XML database
 			File input = new File("src" + File.separator + "recources" + File.separator + "questions.xml");
@@ -35,6 +37,11 @@ public class Game {
 			XPath xpath = xpathfactory.newXPath();
 			// Creates a new question creator
 			QuestionCreator qc = new QuestionCreator(doc, xpath);
+			
+			
+			//Generate questions to text
+			
+			
 			
 			// Getting 1 question for each difficulty level
 			// This will need to be changed once we implement levels, and start picking question difficulty based on level
@@ -54,6 +61,7 @@ public class Game {
 			e.printStackTrace();
 		}
 		
+	*/
 		
 		//This section is to test making the enemies move and repaint the GameArea
 		Timer timer = new Timer();
