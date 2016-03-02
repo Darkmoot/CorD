@@ -1,6 +1,7 @@
 package userInterface;
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -11,6 +12,7 @@ import javax.swing.text.BadLocationException;
 import backEnd.Enemy;
 import backEnd.GameArea;
 import backEnd.Question;
+
 
 /**
  *
@@ -34,6 +36,7 @@ public class Window extends javax.swing.JFrame {
 	private int currentLine;
     private String lastInput;
     
+    
     //the inputMatcher
     private inputMatcher IMatcher;
    
@@ -56,13 +59,14 @@ public class Window extends javax.swing.JFrame {
     	this.IMatcher = new inputMatcher("none", new HashSet<Question>());
     	this.currentLine = 0;
     	
+    	
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
         InputText = new javax.swing.JTextArea(">>> ");
         gArea = new GameArea();
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
-       
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -116,10 +120,17 @@ public class Window extends javax.swing.JFrame {
 						InputText.append("\n>>> ");
 						currentLine++;
 					}
-					else if (IMatcher.matchAnswer( lastInput)) {
+					else if (IMatcher.matchAnswer(lastInput)) {
 					//	System.out.println(result);
-						InputText.append("\nCorrect Answer\n>>> ");
+						InputText.append("\nCorrect Answer ");
+						currentLine +=1 ;
+						
+						InputText.append("\nScore: ");
+						InputText.append(Integer.toString(IMatcher.getScore()));
+						InputText.append("\n>>> ");
 						currentLine+= 2;
+						
+						
 					} 
 					else {
 						InputText.append("\nIncorrect Answer\n>>> ");
