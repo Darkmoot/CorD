@@ -76,6 +76,18 @@ public class Game {
 			}
 		}, 0, 1*1000);
 		
+		Timer t = new Timer();
+		
+		t.schedule(new TimerTask() {
+			public void run() {
+				ArrayList<Player> players = w.getGameArea().getPlayers();
+				for (Player player : players) {
+					player.moveDown(100);
+				}
+				w.getGameArea().repaint();
+			}
+		}, 0, 1*1000);
+		
 	}
 	
 
