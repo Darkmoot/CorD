@@ -1,12 +1,15 @@
 package userInterface;
 
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
 
+import javax.swing.JLabel;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
 
 import backEnd.Enemy;
 import backEnd.GameArea;
@@ -25,6 +28,7 @@ public class Window extends javax.swing.JFrame {
 	
     // Variables declaration - do not modify                     
     private GameArea gArea;
+    private JLabel scoreboard;
     private javax.swing.JScrollPane InputScroll;
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
@@ -63,6 +67,8 @@ public class Window extends javax.swing.JFrame {
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
        
+        scoreboard = new JLabel("Score: 0", JLabel.RIGHT);
+        scoreboard.setSize(100,100);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -82,44 +88,24 @@ public class Window extends javax.swing.JFrame {
 				int keyCode = e.getKeyCode();
 				
 				if (keyCode == KeyEvent.VK_ENTER) {
-					//System.out.println("I pressed the Enter button");
 					
-					// InputText.append("\n>>> ");
 					e.consume(); //consume the regular action of enter
-					//Set up the line propt count to the current since enter resets to begginning of line
-					//currentLinePrompt = InputText.getCaretPosition();
-					
-					 //System.out.println(InputText.getCaretPosition());
-					
-					//try {
-						
-						//currentLine = InputText.getLineOfOffset(InputText.getCaretPosition()); // translates to line number
-						
-						//System.out.println(currentline); //split by the >>> and then idex into by current line
-						//will not take alot of time complecity
-						//System.out.println(lastInput);
-						//update the last input variable
-				//	} catch (BadLocationException e1) {
-					//	e1.printStackTrace();
-					//}
-					
-					
-					//System.out.println(currentLine);
-					//System.out.println(InputText.getText().split("\n").length);
+				
 					
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 					//IMatcher.donothing();
-					boolean result = IMatcher.matchAnswer(lastInput);
+					//boolean result = IMatcher.matchAnswer(lastInput);
 
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
 						currentLine++;
 					}
-					else if (IMatcher.matchAnswer( lastInput)) {
+					else if (IMatcher.matchAnswer(lastInput)) {
 					//	System.out.println(result);
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
+						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
 					else {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -179,7 +165,8 @@ public class Window extends javax.swing.JFrame {
 
         //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
-		gArea.repaint();		
+		gArea.repaint();	
+		gArea.add(scoreboard);
 
 
         QuestionText.setColumns(20);
@@ -187,7 +174,12 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setLineWrap(true);
         QuestionText.setWrapStyleWord(false);
         QuestionText.setEditable(false);
+        
+        
+        
         QuestionScroll.setViewportView(QuestionText);
+        
+  
         
         QuestionText.setLineWrap(true);
         QuestionText.setWrapStyleWord(true);
@@ -282,3 +274,4 @@ public class Window extends javax.swing.JFrame {
 
                
 }
+
