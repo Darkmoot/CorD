@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashSet;
 
+import javax.swing.JLabel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
 
@@ -27,6 +28,7 @@ public class Window extends javax.swing.JFrame {
 	
     // Variables declaration - do not modify                     
     private GameArea gArea;
+    private JLabel scoreboard;
     private javax.swing.JScrollPane InputScroll;
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
@@ -65,6 +67,8 @@ public class Window extends javax.swing.JFrame {
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
        
+        scoreboard = new JLabel("Score: 0", JLabel.RIGHT);
+        scoreboard.setSize(100,100);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -101,6 +105,7 @@ public class Window extends javax.swing.JFrame {
 					//	System.out.println(result);
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
+						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
 					else {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -160,7 +165,8 @@ public class Window extends javax.swing.JFrame {
 
         //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
-		gArea.repaint();		
+		gArea.repaint();	
+		gArea.add(scoreboard);
 
 
         QuestionText.setColumns(20);
