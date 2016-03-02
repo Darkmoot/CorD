@@ -20,11 +20,11 @@ public class GameArea extends JPanel {
 		super.paint(g);
 		for (Enemy enemy : enemies) {
 			//Add two more parameters after getYval to set image dimensions
-			g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), null);
+			g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), 30, 30, null);
 		}
 	}
 
-	public List<Enemy> getEnemies() {
+	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
 
