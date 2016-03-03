@@ -1,4 +1,4 @@
-What did you build during this phase?
+**What did you build during this phase?**
 
 We have implemented our main game screen consisting of the user input console, the JTextArea nested in a JScrollArea that will contain the questions we ask the player, and the graphical game area that displays the enemies.  The graphical area consists of our GameArea class that extends the JPanel class, allowing us to draw onto the JPanel as needed.
 
@@ -29,7 +29,7 @@ We have created an inputMatcher class that checks the answers that the player pr
 https://github.com/csc301-winter-2016/project-team10/blob/master/301Project/src/userInterface/inputMatcher.java
 
 
-High-level design of your software:
+**High-level design of your software:**
 
 The game applet mainly uses JTextArea, JScrollArea and JPanel  to display the game area.
 
@@ -53,7 +53,7 @@ We may implement a pause function for the game.
 
 
 
-Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.:
+**Technical highlights: interesting bugs, challenges, lessons learned, observations, etc.:**
 
 We faced a few issues with the GitHub repo, we broke the project while trying to solve conflicts; this threw off the project until we reverted to a previous version and then merged the code we wanted again.
 
@@ -69,7 +69,7 @@ Another technical aspect we learned was the similarity between JTextArea and JTe
 
 
 
-What are your plans for the next phase?
+**What are your plans for the next phase?**
 
 We want to change the JTextAreas to JTextPanes so that we can take advantage of the greater functionality of the JTextPane.
 
