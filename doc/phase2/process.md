@@ -24,7 +24,7 @@ Division of Responsibilities:
 Will was responsible for creating the Window class and interpreting input. Laith was responsible for creating the Questions database, interface and associated classes. Ken was responsible for creating the game area and enemies. Laura was responsible for creating the score related tasks. Will, Laith, Ken, Kaeto, and Laura were all responsible for populating the questions database as well as debugging and testing the team’s code.
 
 
-Update Meetings
+Update Meetings:
 
 Monday Feb 22nd Meeting Notes: 
 https://github.com/willischarted/project-team10/blob/master/meetingFeb22.pdf
@@ -43,7 +43,7 @@ PDF with charts:
 project-team10/doc/phase2/Burn Down Charts.pdf
 
 
-Review and Retrospective
+Review and Retrospective:
 
 Our original idea was to create a desktop adventure game that introduces children to the basic concepts behind programming. We were originally going to have a simple story line involving a main character who completes various programming concept based puzzles throughout the adventure story. As we began programming, we changed our simple story line to a more action-based game, similar to space invaders. In our game, monsters crawl down the game screen and the player must correctly answer programming questions to defeat these monsters.  
 
