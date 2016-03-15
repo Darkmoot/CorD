@@ -67,6 +67,7 @@ public class Window extends javax.swing.JFrame {
         QuestionScroll = new javax.swing.JScrollPane();
         QuestionText = new javax.swing.JTextArea();
        
+        // initial score 0
         scoreboard = new JLabel("Score: 0", JLabel.RIGHT);
         scoreboard.setSize(100,100);
 
@@ -105,6 +106,8 @@ public class Window extends javax.swing.JFrame {
 					//	System.out.println(result);
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
+						
+						// update score with correct anwser 
 						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
 					else {
@@ -166,7 +169,10 @@ public class Window extends javax.swing.JFrame {
         //Testing adding enemy and painting it on to the screen
 		gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();	
+		
+		// add scoreboard to game panel
 		gArea.add(scoreboard);
+		scoreboard.setLocation(375, 0);
 
 
         QuestionText.setColumns(20);

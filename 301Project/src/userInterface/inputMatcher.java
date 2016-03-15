@@ -18,6 +18,7 @@ public class inputMatcher {
 	
 	private JTextArea console; //the actual console
 	
+	//game score variable
 	private int score = 0;
 	
 	
