@@ -21,8 +21,10 @@ public class Game {
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
-		lg.Question1();
+		
+		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
+		Level l = new Level(w.getQuestionText(), w.getInputMatcher(), qc);
+		l.Question1();
 		
 		
 		//This section is to test making the enemies move and repaint the GameArea
