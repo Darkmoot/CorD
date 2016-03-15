@@ -23,8 +23,8 @@ public class Game {
 		Window w = new Window();
 		
 		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
-		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
-		lg.Question1();
+		Level l = new Level(w.getQuestionText(), w.getInputMatcher(), qc);
+		l.Question1();
 		
 		
 		//This section is to test making the enemies move and repaint the GameArea
