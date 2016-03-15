@@ -21,6 +21,8 @@ public class Game {
 	public static void main(String[] args) {
 		
 		Window w = new Window();
+		
+		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
 		lg.Question1();
 		
