@@ -26,12 +26,13 @@ public class Level {
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionCreator qc) {
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		timer = new Timer();
+		this.qc = qc;
 		
 		spawnQuestion = new TimerTask() {
 
@@ -42,32 +43,6 @@ public class Level {
 		
 		};
 		
-		
-		
-		try {
-			
-	
-			// Open up the XML database
-			File input = new File("src" + File.separator + "recources" + File.separator + "questions.xml");
-			// Parse it, and store it as a document
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setValidating(true);
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(input);
-			// Set up document for reading with XPath
-			XPathFactory xpathfactory = XPathFactory.newInstance();
-			XPath xpath = xpathfactory.newXPath();
-			// Creates a new question creator
-			qc = new QuestionCreator(doc, xpath);
-			
-			
-			//Generate questions to text
-			
-			
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	
