@@ -6,7 +6,9 @@ import javax.xml.xpath.*;
 
 import org.w3c.dom.*;
 
-public class QuestionCreator {
+import backEnd.Question.type;
+
+public class QuestionCreator implements QuestionFactory {
 	
 	Document doc;
 	XPath xpath;
@@ -70,7 +72,7 @@ public class QuestionCreator {
 		return getQuestionByExpr("//question[@difficulty=" + difficulty + "]");
 	}
 	
-	public Question getRandomQuestionByType() {
+	public Question getRandomQuestionByType(type t) {
 		
 		return null;
 	}

@@ -12,17 +12,14 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 
-import userInterface.inputMatcher;
-import backEnd.GameArea;
-import backEnd.Question;
-import backEnd.QuestionCreator;
-
+import userInterface.*;
+import backEnd.*;
 
 public class LevelGenerator {
 	
 	private Timer timer;
 	private TimerTask spawnQuestion;
-	private QuestionCreator qc;
+	private QuestionFactory qc;
 	private JTextArea QuestionPage;
 	private inputMatcher matcher;
 	private GameArea garea;
