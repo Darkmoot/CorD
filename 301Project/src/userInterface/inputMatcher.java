@@ -64,13 +64,20 @@ public class inputMatcher {
 	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
 	public String matchAnswer(String answer) {
-		
+		try {
+		if (!answer.contains("at")){
+			return "bad syntax!";
+		}
 		
 		String input = answer.split("at")[0].trim();
-		int index = Integer.parseInt(answer.split("at")[1].trim());
+		int index;
+	
+			index = Integer.parseInt(answer.split("at")[1].trim());
+		
+		
 		System.out.println("the input is: "+ input);
 		System.out.println("the index is " + index);
-		if (index > this.currentQuestions.size()) {
+		if (index > this.currentQuestions.size() -1) {
 			return "index out of bounds";
 		}
 		Question q = this.currentQuestions.get(index);
@@ -101,6 +108,10 @@ public class inputMatcher {
 		}
 		return false;
 		*/
+		}
+		catch (Exception e) {
+			return e.toString();
+		}
 	}
 	
 	

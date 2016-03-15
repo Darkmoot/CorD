@@ -2,6 +2,8 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +13,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 
 import userInterface.inputMatcher;
+import backEnd.GameArea;
 import backEnd.Question;
 import backEnd.QuestionCreator;
 
@@ -22,8 +25,12 @@ public class LevelGenerator {
 	private QuestionCreator qc;
 	private JTextArea QuestionPage;
 	private inputMatcher matcher;
+	private GameArea garea;
 	
-	public LevelGenerator(JTextArea Question, inputMatcher matcher) {
+	private ImageIcon icon;
+	
+	public LevelGenerator(JTextArea Question, inputMatcher matcher, GameArea gamearea) {
+		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		timer = new Timer();
@@ -69,7 +76,9 @@ public class LevelGenerator {
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
 	//but also sets them up
 	public void Question1() {
-		timer.schedule (spawnQuestion, 0l, 5000*10);
+		timer.schedule (spawnQuestion, 0l, 1000*10);
+		
+	
 	}
 	//Add code for other difficulties or add a random function
 	
@@ -110,6 +119,16 @@ public class LevelGenerator {
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
 	
+	}
+	
+	public void displayLesson1() {
+		//load lesson 1
+		/*
+		icon = new ImageIcon(this.getClass().getResource("C:\\Users\\HisProdigalSon/Desktop/301/project/project-team10/301Project/graphics/Lessons/lessonOperators.png"));
+		JLabel label = new JLabel(icon);
+		label.setVisible(true);
+		garea.add(label);
+		*/
 	}
 	
 	//cancels the input timertask
