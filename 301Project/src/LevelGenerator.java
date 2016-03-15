@@ -2,6 +2,8 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +13,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 
 import userInterface.inputMatcher;
+import backEnd.GameArea;
 import backEnd.Question;
 import backEnd.QuestionCreator;
 
@@ -22,8 +25,12 @@ public class LevelGenerator {
 	private QuestionCreator qc;
 	private JTextArea QuestionPage;
 	private inputMatcher matcher;
+	private GameArea garea;
 	
-	public LevelGenerator(JTextArea Question, inputMatcher matcher) {
+	private ImageIcon icon;
+	
+	public LevelGenerator(JTextArea Question, inputMatcher matcher, GameArea gamearea) {
+		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		timer = new Timer();
@@ -32,7 +39,7 @@ public class LevelGenerator {
 
 			@Override
 			public void run() {
-				spawnQuestion(1);	
+				spawnQuestion();	
 			}
 		
 		};
@@ -59,19 +66,6 @@ public class LevelGenerator {
 			//Generate questions to text
 			
 			
-			/*
-			// Getting 1 question for each difficulty level
-			// This will need to be changed once we implement levels, and start picking question difficulty based on level
-			for (int diff = 1; diff <= 5; diff++) {
-				// Compiles XPath expression that gets questions of a certain difficulty
-				
-				// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
-				Question q = qc.getRandomQuestion(diff);
-				// TODO: this should be printed to the window.
-				System.out.println(q);
-				System.out.println("\n");
-			}
-		*/
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -83,8 +77,13 @@ public class LevelGenerator {
 	//but also sets them up
 	public void Question1() {
 		timer.schedule (spawnQuestion, 0l, 1000*10);
-	}
+		
 	
+	}
+	//Add code for other difficulties or add a random function
+	
+	
+	//spawn random questions of a specific difficulty
 	public void spawnQuestion(int diff) {
 		
 			// Compiles XPath expression that gets questions of a certain difficulty
@@ -97,6 +96,56 @@ public class LevelGenerator {
 			//add to the question window.
 			this.QuestionPage.append("\n" + q.toString() + "\n");
 			
+			//Can also use Default Caret Bottom.
+			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+			
 	}
+	
+	//spawn random questions 
+	public void spawnQuestion() {
+
+		// Compiles XPath expression that gets questions of a certain difficulty
+		
+		// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
+		Question q = qc.getRandomQuestion();
+		
+		//add to the matcher
+		this.matcher.addToCurrentQuestions(q);
+		//add to the question window.
+		this.QuestionPage.append("\n" + q.toString() + "\n");
+		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
+		
+		//Can also use Default Caret Bottom.
+		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+		
+	
+	}
+	
+	public void displayLesson1() {
+		//load lesson 1
+		/*
+		icon = new ImageIcon(this.getClass().getResource("C:\\Users\\HisProdigalSon/Desktop/301/project/project-team10/301Project/graphics/Lessons/lessonOperators.png"));
+		JLabel label = new JLabel(icon);
+		label.setVisible(true);
+		garea.add(label);
+		*/
+	}
+	
+	//cancels the input timertask
+	public void stopWave(TimerTask t) {
+		t.cancel();
+		
+	}
+	
+	//give a delay to the in
+	public void delayWave(TimerTask t,long l ) throws InterruptedException {
+		try {
+			t.wait(l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
 	
 }

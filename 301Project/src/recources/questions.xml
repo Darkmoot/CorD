@@ -31,16 +31,32 @@
 			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\nprint(a_list == b_list)</ask>
 			<answer>false</answer>
 		</question>
+		<question difficulty="1">
+			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\nprint(a_list == b_list)</ask>
+			<answer>false</answer>
+		</question>
+		<question difficulty="2">
+			<ask>print(type(20 / 4) == type(10 // 2))</ask>
+			<answer>false</answer>
+		</question>
+		<question difficulty="2">
+			<ask>print('apple' &lt; 'banana' and True)</ask>
+			<answer>true</answer>
+		</question>
+		<question difficulty="2">
+			<ask>print(type(20 / 4) == type(10 // 2)) </ask>
+			<answer>false</answer>
+		</question>
+		<question difficulty="4">
+			<ask>values = [3, 7, 2]\nvalues[-1] = 'random'\nprint(values)</ask>
+			<answer>[3, 7, ’random’]</answer>
+		</question>
 	</true-false-questions>
 
 	<return-value-questions>
 		<question difficulty="3">
 			<ask>mylist = [1, 2, 3]\nmylist.pop()</ask>
 			<answer>3</answer>
-		</question>
-		<question difficulty="4">
-			<ask>for (i=1; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
-			<answer>10</answer>
 		</question>
 		<question difficulty="4">
 			<ask>for (i=0; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
@@ -57,6 +73,22 @@
 		<question difficulty="3">
 			<ask>print(20 / 2 ** 2 + 3) </ask>
 			<answer>8.0</answer>
+		</question>
+		<question difficulty="1">
+			<ask>s = "hi there"\nprint(s[3])</ask>
+			<answer>t</answer>
+		</question>
+		<question difficulty="1">
+			<ask>values = [3, 7, 2]\nvalues.append(4)\nprint(values)</ask>
+			<answer>[3, 7, 2, 4]</answer>
+		</question>
+		<question difficulty="5">
+			<ask>words = ['best', 'of', 'luck']\nwords.append(words[0])\nprint(words)</ask>
+			<answer>[’best’, ’of’, ’luck’, ’best’]</answer>
+		</question>
+		<question difficulty="1">
+			<ask>print(10 / 5 * 2)</ask>
+			<answer>4.0</answer>
 		</question>
 	</return-value-questions>
 </questions>
