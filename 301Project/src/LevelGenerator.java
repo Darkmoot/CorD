@@ -30,6 +30,7 @@ public class LevelGenerator {
 	private ImageIcon icon;
 	
 	public LevelGenerator(JTextArea Question, inputMatcher matcher, GameArea gamearea) {
+		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
@@ -89,7 +90,7 @@ public class LevelGenerator {
 			// Compiles XPath expression that gets questions of a certain difficulty
 			
 			// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
-			Question q = qc.getRandomQuestion(diff);
+			Question q = qc.getRandomQuestionByDiff(diff);
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
