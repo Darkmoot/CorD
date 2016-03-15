@@ -96,14 +96,13 @@ public class Window extends javax.swing.JFrame {
 					
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
-					//IMatcher.donothing();
-					//boolean result = IMatcher.matchAnswer(lastInput);
+
 
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
 						currentLine++;
 					}
-					else if (IMatcher.matchAnswer(lastInput)) {
+					else if (IMatcher.matchAnswer(lastInput) == "correct") {
 					//	System.out.println(result);
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
@@ -111,11 +110,16 @@ public class Window extends javax.swing.JFrame {
 						// update score with correct anwser 
 						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
-					else {
+					else if (IMatcher.matchAnswer(lastInput) == "incorrect") {
 						InputText.append("\nIncorrect Answer\n>>> ");
 					//	System.out.println(result);
 						currentLine+= 2;
 					} 
+					else {
+						InputText.append("\nIndex out of bounds!\n>>> ");
+						//	System.out.println(result);
+							currentLine+= 2;
+					}
 					
 					currentLinePrompt = InputText.getCaretPosition();
 					

@@ -18,6 +18,7 @@ public class inputMatcher {
 	private List<Question> currentQuestions;
 	
 	
+	
 	private JTextArea console; //the actual console
 	
 	//game score variable
@@ -62,9 +63,25 @@ public class inputMatcher {
 	
 	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
-	public boolean matchAnswer(String answer) {
+	public String matchAnswer(String answer) {
 		
-		System.out.println(answer);
+		
+		String input = answer.split("at")[0].trim();
+		int index = Integer.parseInt(answer.split("at")[1].trim());
+		System.out.println("the input is: "+ input);
+		System.out.println("the index is " + index);
+		if (index > this.currentQuestions.size()) {
+			return "index out of bounds";
+		}
+		Question q = this.currentQuestions.get(index);
+		if (q.getAnswer().equals(input)) {
+			score += q.getDifficulty();
+			return "correct";
+		}
+		else {
+			return "incorrect";
+		}
+		/*
 		for (Question q: currentQuestions) {
 			if (q.getAnswer().equalsIgnoreCase(answer)) {
 				// if correct answer, increase score
@@ -75,6 +92,7 @@ public class inputMatcher {
 				//disable question
 			}
 			else {
+				System.out.println("false");
 				return false;
 				//console.append("\nIncorrect answer\n>>> ");
 				//window.setCurrentLinePrompt();
@@ -82,6 +100,7 @@ public class inputMatcher {
 			}
 		}
 		return false;
+		*/
 	}
 	
 	

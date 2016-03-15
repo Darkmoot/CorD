@@ -69,7 +69,7 @@ public class LevelGenerator {
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
 	//but also sets them up
 	public void Question1() {
-		timer.schedule (spawnQuestion, 0l, 1000*10);
+		timer.schedule (spawnQuestion, 0l, 5000*10);
 	}
 	//Add code for other difficulties or add a random function
 	
@@ -104,6 +104,7 @@ public class LevelGenerator {
 		this.matcher.addToCurrentQuestions(q);
 		//add to the question window.
 		this.QuestionPage.append("\n" + q.toString() + "\n");
+		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
