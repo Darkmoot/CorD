@@ -1,6 +1,8 @@
 package userInterface;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JTextArea;
@@ -13,7 +15,7 @@ public class inputMatcher {
 	private String command;
 	
 	//the 
-	private Set<Question> currentQuestions;
+	private List<Question> currentQuestions;
 	
 	
 	private JTextArea console; //the actual console
@@ -22,7 +24,7 @@ public class inputMatcher {
 	private int score = 0;
 	
 	
-	public inputMatcher(String command, HashSet<Question> currentQuestions) {
+	public inputMatcher(String command, ArrayList<Question> currentQuestions) {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		//this.console = c;
@@ -39,7 +41,7 @@ public class inputMatcher {
 	}
 	
 	//get the set of questions
-	public Set<Question> getCurrentQuestions() {
+	public List<Question> getCurrentQuestions() {
 		return this.currentQuestions;
 	}
 	
