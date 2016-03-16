@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,15 +46,19 @@ public class Level {
 		
 	}
 	
+	// return the system time in millis each question will be spawned at -  should 
+	// be able to use this to spawn enemies at  same time?
 	
-	public int startLevel() {
+	public List<Long> startLevel() {
 		
 		long start_time = System.currentTimeMillis();
-		long end_time = start_time + this.length;
 		
 		Timer t = new Timer();
 		
 		long previous = 0;
+		
+		List<Long> sl = new ArrayList<>();
+		
 		while (previous <= this.length) {
 			
 			TimerTask spawner = new TimerTask() {
@@ -63,17 +69,18 @@ public class Level {
 			};
 			
 			
-			long delay = new Random().nextInt(4000); // random int between 0 and 4000 (0 and 4 seconds)
-			delay += 1000; // add 1000 to change to 1 to 5 secs
-			// with this delay setting questions are spawned randomly every 1 to 5 secs
+			long delay = new Random().nextInt(4000) + 1000; // random int between 0 and 4000 (0 and 4 seconds)
+			// add 1000 to this so qs are spawned randomly every 1 to 5 secs
 			// TODO: Find apropriate delay, maybe based on level/dificulty
-			t.schedule(spawner, delay+previous);
-			previous += delay;
+			long curDelay = delay + previous;
+			t.schedule(spawner, curDelay);
+			sl.add(curDelay + start_time);
+			previous = curDelay;
 			this.numQuestions ++;
 			
 		}
 		
-		return 0;
+		return sl;
 	}
 	
 	
