@@ -44,8 +44,8 @@ public class Level {
 		
 	}
 	
-	// returns 
-	public long startLevel() {
+	
+	public int startLevel() {
 		
 		long start_time = System.currentTimeMillis();
 		long end_time = start_time + this.length;
@@ -121,7 +121,7 @@ public class Level {
 		this.matcher.addToCurrentQuestions(q);
 		//add to the question window.
 		this.QuestionPage.append("\n" + q.toString() + "\n");
-		//System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
+		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
