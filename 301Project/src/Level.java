@@ -23,6 +23,8 @@ public class Level {
 	private JTextArea QuestionPage;
 	private inputMatcher matcher;
 	private GameArea garea;
+	private long start_time;
+	private long length;
 	
 	private ImageIcon icon;
 	
@@ -34,6 +36,16 @@ public class Level {
 		timer = new Timer();
 		this.qc = qc;
 		
+		this.length = 20000; // 20 secs in millisec
+		// TODO: change this to parameter to allow variable level duration
+		
+		
+	}
+	
+	// return 1 when time of level ends.
+	public int startLevel() {
+		
+		this.start_time = System.currentTimeMillis();
 		spawnQuestion = new TimerTask() {
 
 			@Override
@@ -42,7 +54,7 @@ public class Level {
 			}
 		
 		};
-		
+		return 0;
 	}
 	
 	
