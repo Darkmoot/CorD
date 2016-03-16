@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,57 +18,79 @@ import backEnd.*;
 
 public class Level {
 	
-	private Timer timer;
-	private TimerTask spawnQuestion;
+	//private TimerTask spawnQuestion;
 	private QuestionFactory qc;
 	private JTextArea QuestionPage;
 	private inputMatcher matcher;
 	private GameArea garea;
-	private long start_time;
 	private long length;
+	private int numQuestions;
+	
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionCreator qc) {
+	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionCreator qc) {
 		
-		this.garea = gamearea;
+		//this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
-		timer = new Timer();
+		//timer = new Timer();
 		this.qc = qc;
 		
-		this.length = 20000; // 20 secs in millisec
+		this.length = 20000; // 5 secs in millisec
+		this.numQuestions = 0;
 		// TODO: change this to parameter to allow variable level duration
 		
 		
 	}
 	
-	// return 1 when time of level ends.
-	public int startLevel() {
+	// returns 
+	public long startLevel() {
 		
-		this.start_time = System.currentTimeMillis();
-		spawnQuestion = new TimerTask() {
-
-			@Override
-			public void run() {
-				spawnQuestion();	
-			}
+		long start_time = System.currentTimeMillis();
+		long end_time = start_time + this.length;
 		
-		};
+		Timer t = new Timer();
+		
+		long previous = 0;
+		while (previous <= this.length) {
+			
+			TimerTask spawner = new TimerTask() {
+				@Override
+				public void run() {
+					spawnQuestion();	
+				}
+			};
+			
+			
+			long delay = new Random().nextInt(4000); // random int between 0 and 4000 (0 and 4 seconds)
+			delay += 1000; // add 1000 to change to 1 to 5 secs
+			// with this delay setting questions are spawned randomly every 1 to 5 secs
+			// TODO: Find apropriate delay, maybe based on level/dificulty
+			t.schedule(spawner, delay+previous);
+			previous += delay;
+			this.numQuestions ++;
+			
+		}
+		
 		return 0;
 	}
 	
 	
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
 	//but also sets them up
-	public void Question1() {
-		timer.schedule (spawnQuestion, 0l, 1000*10);
+	//public void Question1() {
+	//	timer.schedule (spawnQuestion, 0l, 1000*10);
 		
 	
-	}
+	//}
 	//Add code for other difficulties or add a random function
 	
 	
+	public int getNumQuestions() {
+		return numQuestions;
+	}
+
 	//spawn random questions of a specific difficulty
 	public void spawnQuestion(int diff) {
 		
@@ -98,7 +121,7 @@ public class Level {
 		this.matcher.addToCurrentQuestions(q);
 		//add to the question window.
 		this.QuestionPage.append("\n" + q.toString() + "\n");
-		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
+		//System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());

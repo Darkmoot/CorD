@@ -24,7 +24,9 @@ public class Game {
 		
 		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
 		Level l = new Level(w.getQuestionText(), w.getInputMatcher(), qc);
-		l.Question1();
+		l.startLevel();
+		System.out.println("this many questions asked: " + l.getNumQuestions());
+		//l.Question1();
 		
 		
 		//This section is to test making the enemies move and repaint the GameArea

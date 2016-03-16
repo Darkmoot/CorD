@@ -3,7 +3,7 @@
 <!ELEMENT return-value-questions (question*)>
 <!ELEMENT question (ask, answer, hint*)>
 <!ATTLIST question difficulty (1|2|3|4|5) #REQUIRED>
-<!ATTLIST question type (VAR, ARITHMETIC, LIST, FOR, WHILE, CALL) #IMPLIED>
+<!ATTLIST question type (VAR|ARITHMETIC|LIST|FOR|WHILE|CALL) #IMPLIED>
 <!ELEMENT ask (#PCDATA)>
 <!ELEMENT answer (#PCDATA)>
 <!ELEMENT hint (#PCDATA)>
