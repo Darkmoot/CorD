@@ -1,6 +1,8 @@
 package userInterface;
 
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -8,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
@@ -41,8 +44,13 @@ public class Window extends javax.swing.JFrame {
     
     //the inputMatcher
     private inputMatcher IMatcher;
-   
     
+    Color GAMECOLOR = new Color(188, 216, 245);
+    Color INPUTBACKGROUNDCOLOR = new Color(197,251,183);
+    Color QUESTIONBACKGROUNDCOLOR = new Color(202, 193, 232);
+    Color QUESTIONFONTCOLOR = new Color(88,0,176);
+    Font font1 = new Font ("Verdana", 0 , 14);
+    Font font2 = new Font ("Verdana", Font.BOLD , 14);
     // End of variables declaration    
 	
 	/**
@@ -69,8 +77,9 @@ public class Window extends javax.swing.JFrame {
         QuestionText = new javax.swing.JTextArea();
        
         // initial score 0
-        scoreboard = new JLabel("Score: 0", JLabel.RIGHT);
-        scoreboard.setSize(100,100);
+        scoreboard = new JLabel("Score: 0");
+        scoreboard.setSize(100,25);
+        scoreboard.setFont(font2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -79,6 +88,10 @@ public class Window extends javax.swing.JFrame {
         InputText.setColumns(20);
         InputText.setRows(5);
         InputScroll.requestFocus();
+        
+        InputText.setBackground(INPUTBACKGROUNDCOLOR);
+        InputText.setFont(font1);
+       
         
         InputText.setCaretPosition(4); //set up the caret postion
         currentLinePrompt = InputText.getCaretPosition();
@@ -111,7 +124,7 @@ public class Window extends javax.swing.JFrame {
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
 						
-						// update score with correct anwser 
+						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
 				
@@ -159,11 +172,12 @@ public class Window extends javax.swing.JFrame {
         	
         });
         
-        
+      
         InputScroll.setViewportView(InputText);
 
         javax.swing.GroupLayout GameAreaLayout = new javax.swing.GroupLayout(gArea);
-        gArea.setBackground(java.awt.Color.WHITE);
+        gArea.setBackground(GAMECOLOR);
+        gArea.setBorder(BorderFactory.createLineBorder(Color.black));
         gArea.setLayout(GameAreaLayout);
         GameAreaLayout.setHorizontalGroup(
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +195,7 @@ public class Window extends javax.swing.JFrame {
 		
 		// add scoreboard to game panel
 		gArea.add(scoreboard);
-		scoreboard.setLocation(375, 0);
+		scoreboard.setLocation(430, 10);
 
 
         QuestionText.setColumns(20);
@@ -191,6 +205,11 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setEditable(false);
         
         
+        
+        QuestionText.setBackground(QUESTIONBACKGROUNDCOLOR);
+        QuestionText.setForeground(QUESTIONFONTCOLOR);
+        QuestionText.setFont(font1);
+
         
         QuestionScroll.setViewportView(QuestionText);
         
@@ -233,6 +252,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         setVisible(true);
+        getContentPane().setBackground(Color.BLACK);
         pack();
     }    
     
