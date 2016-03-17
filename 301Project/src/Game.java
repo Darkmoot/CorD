@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,8 +22,14 @@ public class Game {
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		LevelGenerator lg = new LevelGenerator(w.getQuestionText(), w.getInputMatcher());
-		lg.Question1();
+		
+		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
+		Level l = new Level(w.getQuestionText(), w.getInputMatcher(), qc);
+		// currently levels hard coded to last for 20 secs : add parameter
+		List<Long> levelSpawnTimes = new ArrayList<>();
+		levelSpawnTimes = l.startLevel();
+		System.out.println("this many questions asked: " + l.getNumQuestions());
+		//l.Question1();
 		
 		
 		//This section is to test making the enemies move and repaint the GameArea
