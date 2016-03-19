@@ -74,7 +74,7 @@ public class QuestionCreator implements QuestionFactory {
 	
 	public Question getRandomQuestionByType(type t) {
 		
-		return null;
+		return null;//getQuestionByExpr("//question[@type");
 	}
 
 }

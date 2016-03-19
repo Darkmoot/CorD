@@ -31,7 +31,7 @@ public class Level {
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionCreator qc) {
+	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionFactory qc) {
 		
 		//this.garea = gamearea;
 		this.QuestionPage = Question;

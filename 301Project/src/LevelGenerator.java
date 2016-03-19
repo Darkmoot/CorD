@@ -19,6 +19,25 @@ public class LevelGenerator {
 	
 	// code moved to Level
 	// use this to generate the levels
+	private int curLevel;
+	private Window window;
+	private QuestionFactory qf;
+	
+	public LevelGenerator(Window w, QuestionFactory qf) {
+		
+		this.curLevel = 0;
+		this.qf = qf;
+		this.window = w;
+		
+	}
+	
+	public Level createLevel() {
+		
+		this.curLevel++;
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.qf);
+		
+		return level;
+	}
 		
 	
 }
