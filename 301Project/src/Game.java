@@ -14,6 +14,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 
 import backEnd.*;
+import backEnd.Question.type;
 import userInterface.Window;
 
 
@@ -25,6 +26,17 @@ public class Game {
 		
 		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lgen = new LevelGenerator(w, qc);
+		// Testing get question by type
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.LIST)+"\n");
+		
+		// testing get question by types
+		List<type> lt = new ArrayList<>();
+		lt.add(type.CALL);
+		lt.add(type.LIST);
+		System.out.println(qc.getRandomQuestionByTypes(lt));
 		
 		Level curLevel = lgen.createLevel();
 		curLevel.startLevel();
