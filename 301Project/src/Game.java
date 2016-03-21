@@ -14,6 +14,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 
 import backEnd.*;
+import backEnd.Question.type;
 import userInterface.Window;
 
 
@@ -23,12 +24,23 @@ public class Game {
 		
 		Window w = new Window();
 		
-		QuestionCreator qc = new QuestionCreatorFactory().getInstance();
-		Level l = new Level(w.getQuestionText(), w.getInputMatcher(), qc);
-		// currently levels hard coded to last for 20 secs : add parameter
-		List<Long> levelSpawnTimes = new ArrayList<>();
-		levelSpawnTimes = l.startLevel();
-		System.out.println("this many questions asked: " + l.getNumQuestions());
+		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
+		LevelGenerator lgen = new LevelGenerator(w, qc);
+		// Testing get question by type
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+		System.out.println(qc.getRandomQuestionByType(type.LIST)+"\n");
+		
+		// testing get question by types
+		List<type> lt = new ArrayList<>();
+		lt.add(type.CALL);
+		lt.add(type.LIST);
+		System.out.println(qc.getRandomQuestionByTypes(lt));
+		
+		Level curLevel = lgen.createLevel();
+		curLevel.startLevel();
+		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
 		
 		

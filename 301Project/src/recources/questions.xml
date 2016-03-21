@@ -5,15 +5,24 @@
 		<question difficulty="2">
 			<ask>4 == 3</ask>
 			<answer>false</answer>
+			<types>
+				<ARITHMETIC/>
+			</types>
 		</question>
 
 		<question difficulty="1">
 			<ask>2 == 2</ask>
 			<answer>true</answer>
+			<types>
+				<ARITHMETIC/>
+			</types>
 		</question>
 		<question difficulty="1">
 			<ask>3 &lt; 5</ask>
 			<answer>true</answer>
+			<types>
+				<ARITHMETIC/>
+			</types>
 		</question>
 		<question difficulty="1">
 			<ask>5 &gt; 3</ask>
@@ -30,6 +39,10 @@
 		<question difficulty="2">
 			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\nprint(a_list == b_list)</ask>
 			<answer>false</answer>
+			<types>
+				<LIST/>
+				<CALL/>
+			</types>
 		</question>
 		<question difficulty="1">
 			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\nprint(a_list == b_list)</ask>
