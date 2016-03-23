@@ -1,6 +1,8 @@
 package userInterface;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JTextArea;
@@ -13,15 +15,17 @@ public class inputMatcher {
 	private String command;
 	
 	//the 
-	private Set<Question> currentQuestions;
+	private List<Question> currentQuestions;
+	
 	
 	
 	private JTextArea console; //the actual console
 	
+	//game score variable
 	private int score = 0;
 	
 	
-	public inputMatcher(String command, HashSet<Question> currentQuestions) {
+	public inputMatcher(String command, ArrayList<Question> currentQuestions) {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		//this.console = c;
@@ -38,7 +42,7 @@ public class inputMatcher {
 	}
 	
 	//get the set of questions
-	public Set<Question> getCurrentQuestions() {
+	public List<Question> getCurrentQuestions() {
 		return this.currentQuestions;
 	}
 	
@@ -59,9 +63,32 @@ public class inputMatcher {
 	
 	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
-	public boolean matchAnswer(String answer) {
+	public String matchAnswer(String answer) {
+		try {
+		if (!answer.contains("at")){
+			return "bad syntax!";
+		}
 		
-		System.out.println(answer);
+		String input = answer.split("at")[0].trim();
+		int index;
+	
+			index = Integer.parseInt(answer.split("at")[1].trim());
+		
+		
+		System.out.println("the input is: "+ input);
+		System.out.println("the index is " + index);
+		if (index > this.currentQuestions.size() -1) {
+			return "index out of bounds";
+		}
+		Question q = this.currentQuestions.get(index);
+		if (q.getAnswer().equals(input)) {
+			score += q.getDifficulty();
+			return "correct";
+		}
+		else {
+			return "incorrect";
+		}
+		/*
 		for (Question q: currentQuestions) {
 			if (q.getAnswer().equalsIgnoreCase(answer)) {
 				// if correct answer, increase score
@@ -72,6 +99,7 @@ public class inputMatcher {
 				//disable question
 			}
 			else {
+				System.out.println("false");
 				return false;
 				//console.append("\nIncorrect answer\n>>> ");
 				//window.setCurrentLinePrompt();
@@ -79,6 +107,11 @@ public class inputMatcher {
 			}
 		}
 		return false;
+		*/
+		}
+		catch (Exception e) {
+			return e.toString();
+		}
 	}
 	
 	
