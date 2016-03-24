@@ -132,6 +132,10 @@ public class Window extends javax.swing.JFrame {
 					}
 					
 					else {
+					
+					//Mark previous score
+					int prevScore = IMatcher.getScore();
+
 					String resultFromMatching = IMatcher.matchAnswer(lastInput);
 					if (InputText.getCaretPosition() == currentLinePrompt) {
 						InputText.append("\n>>> ");
@@ -148,6 +152,12 @@ public class Window extends javax.swing.JFrame {
 						
 						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
+						
+						//Remove appropriate amount of enemies
+						int i;
+						for (i = 0; i < IMatcher.getScore() - prevScore; i++) {
+							gArea.removeEnemy(0);
+						}
 					} 
 					
 					else if (resultFromMatching == "correct") {
