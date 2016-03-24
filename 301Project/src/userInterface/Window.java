@@ -190,8 +190,11 @@ public class Window extends javax.swing.JFrame {
         );
 
         //Testing adding enemy and painting it on to the screen
-		gArea.addEnemy(new Enemy(10, 10));
+		
+        //gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();	
+		
+		
 		
 		// add scoreboard to game panel
 		gArea.add(scoreboard);
