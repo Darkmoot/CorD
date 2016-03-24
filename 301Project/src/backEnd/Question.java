@@ -10,6 +10,9 @@ public interface Question {
 	
 	public void setAnswered();
 	
+	public int getIndex();
+	public void setIndex(int index);
+	
 	public int getDifficulty();
 	
 	@Override
