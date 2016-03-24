@@ -11,15 +11,20 @@ public class GameArea extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Enemy> enemies;
 	public ArrayList<Player> players;
+	private List Lesson;
 	
 	public GameArea() {
 		enemies = new ArrayList<Enemy>();
 		players = new ArrayList<Player>();
+		Lesson = new ArrayList();
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		
+		//Add a bool for whether to draw
+		//TODO add the paint for lessons
 		
 		for (Player player : players) {
 			//Add two more parameters after getYval to set image dimensions
@@ -39,6 +44,11 @@ public class GameArea extends JPanel {
 	
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	
+	//returns the list for the current lessons
+	public List getLesson() {
+		return this.Lesson;
 	}
 
 	public void addEnemy(Enemy enemy) {
