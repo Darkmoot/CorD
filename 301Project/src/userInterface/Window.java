@@ -96,17 +96,25 @@ public class Window extends javax.swing.JFrame {
         InputText.setCaretPosition(4); //set up the caret postion
         currentLinePrompt = InputText.getCaretPosition();
         //System.out.println(InputText.getCaretPosition());
+        
+    //    QuestionText.append("Press Enter to Start Level\n");
         InputText.addKeyListener(new KeyListener() {
         	
         	@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				
-				if (keyCode == KeyEvent.VK_ENTER) {
+				
 					
 					e.consume(); //consume the regular action of enter
 				
-					
+					if (keyCode == KeyEvent.VK_ENTER) {
+						if (gArea.isLessonActive()) {
+						//	InputText.append("\nStart Game\n>>> ");
+						//	currentLine+= 2;
+							gArea.toggleLesson();
+						}
+						else {
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 
@@ -140,6 +148,7 @@ public class Window extends javax.swing.JFrame {
 				
 					currentLinePrompt = InputText.getCaretPosition();
 					
+					}
 				}
 				
 				if (keyCode == KeyEvent.VK_BACK_SPACE) {

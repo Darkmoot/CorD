@@ -27,6 +27,8 @@ public class GameArea extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 		
+		
+		/*
 		//Add a bool for whether to draw
 		//TODO add the paint for lessons
 		
@@ -36,7 +38,9 @@ public class GameArea extends JPanel {
 			
 		}//only render the lesson if we have it set to true
 		else {
-		
+		*/
+	
+			
 			for (Player player : players) {
 				//Add two more parameters after getYval to set image dimensions
 				g.drawImage(player.getImage(), player.getXval(), player.getYval(), 40, 52, null);
@@ -48,7 +52,7 @@ public class GameArea extends JPanel {
 				g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), 30, 46, null);
 			}
 		}
-	}
+
 
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
@@ -68,6 +72,9 @@ public class GameArea extends JPanel {
 		//switch back and forth between shoing the lesson or not
 	}
 	
+	public boolean isLessonActive() {
+		return this.showLesson;
+	}
 	
 
 	public void addEnemy(Enemy enemy) {
