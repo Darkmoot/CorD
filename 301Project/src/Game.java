@@ -45,7 +45,12 @@ public class Game {
 		
 		
 		//This section is to test making the enemies move and repaint the GameArea
+		
+		//only do it if 
+		//if (!w.getGameArea().isLessonActive()) {
+		
 		Timer timer = new Timer();
+		
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
@@ -57,6 +62,8 @@ public class Game {
 			}
 		}, 0, 1*1000); //0 is the delay before the timerTask starts running, 1*1000 is how often it goes off (meaning it goes off every second)
 		
+		
+	
 		Timer t = new Timer();
 		
 		t.schedule(new TimerTask() {
@@ -70,6 +77,8 @@ public class Game {
 			}
 		}, 0, 1*1000);
 		
+		//}
+	
 	}
 	
 
