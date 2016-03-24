@@ -105,10 +105,16 @@ public class Level {
 			
 			// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
 			Question q = qc.getRandomQuestionByDiff(diff);
+		
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
+			
 			this.matcher.incrementNumIndex();
+			
+			//set  the index of that question reletive to the list
+			q.setIndex(this.matcher.getNumIndex());
+			
 			//add to the question window.
 			this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+  q.toString() + "\n");
 			
@@ -132,6 +138,10 @@ public class Level {
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);
 		this.matcher.incrementNumIndex();
+		
+		//set  the index of that question reletive to the list
+		q.setIndex(this.matcher.getNumIndex());
+		
 		//add to the question window.
 		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
 		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());

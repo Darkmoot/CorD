@@ -17,7 +17,7 @@ public class inputMatcher {
 	//the last command input
 	private String command;
 	
-	//the 
+	//the list of all answered questions -> could change to dictionary
 	private List<Question> currentQuestions;
 	
 	
@@ -42,6 +42,24 @@ public class inputMatcher {
 	//set the command to a new one
 	public void setCommand(String newCommand) {
 		this.command = newCommand;
+	}
+	
+	public List<Object> getUnanswered() {
+		List<Object> returnval= new ArrayList<Object>();
+		String unanswered = "\n";
+		int numUnanswered = 1;
+		for (Question q: this.getCurrentQuestions()) {
+			if (!q.isAnswered()) {
+				unanswered += "Question - " + q.getIndex() + "\n";
+				numUnanswered ++;
+			}
+		}
+		
+		//return he string and int
+		returnval.add(0,unanswered);
+		returnval.add(1, numUnanswered);
+		return returnval;
+		
 	}
 	
 	//get the set of questions
@@ -103,6 +121,7 @@ public class inputMatcher {
 		}
 		else if (q.getAnswer().equals(input)) {
 			score += q.getDifficulty();
+			q.setAnswered();
 			return "correct";
 		}
 		else {
