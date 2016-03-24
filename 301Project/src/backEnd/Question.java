@@ -8,6 +8,8 @@ public interface Question {
 	
 	public String getAnswer();
 	
+	public void setAnswered();
+	
 	public int getDifficulty();
 	
 	@Override

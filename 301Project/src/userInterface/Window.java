@@ -106,15 +106,17 @@ public class Window extends javax.swing.JFrame {
 				
 				
 					
-					e.consume(); //consume the regular action of enter
+				
 				
 					if (keyCode == KeyEvent.VK_ENTER) {
-						if (gArea.isLessonActive()) {
+						/*if (gArea.isLessonActive()) {
 						//	InputText.append("\nStart Game\n>>> ");
 						//	currentLine+= 2;
 							gArea.toggleLesson();
 						}
 						else {
+						*/
+					e.consume(); //consume the regular action of enter
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 
@@ -135,6 +137,13 @@ public class Window extends javax.swing.JFrame {
 						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
+					
+					else if (resultFromMatching == "correct") {
+						//	System.out.println(result);
+							InputText.append("\nAlready Answered\n>>> ");
+							currentLine+= 2;
+							
+						} 
 				
 					else if (resultFromMatching == "incorrect") {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -149,13 +158,15 @@ public class Window extends javax.swing.JFrame {
 					currentLinePrompt = InputText.getCaretPosition();
 					
 					}
-				}
+        
+				//}
 				
 				if (keyCode == KeyEvent.VK_BACK_SPACE) {
 					System.out.println("I pressed the delete button");
 					//If the current caret is equal to the current line prompt:
 					//it means we are at the beginning of undeleteable section of the shell
 					if (InputText.getCaretPosition() == currentLinePrompt) {
+						System.out.println("CANNNOT DELETE");
 						e.consume(); //consume delete aka dont delete text
 					}
 				}
@@ -200,7 +211,7 @@ public class Window extends javax.swing.JFrame {
 
         //Testing adding enemy and painting it on to the screen
 		
-        //gArea.addEnemy(new Enemy(10, 10));
+        gArea.addEnemy(new Enemy(10, 10));
 		gArea.repaint();	
 		
 		

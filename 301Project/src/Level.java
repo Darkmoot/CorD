@@ -31,9 +31,9 @@ public class Level {
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionFactory qc) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc) {
 		
-		//this.garea = gamearea;
+		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		//timer = new Timer();
@@ -108,11 +108,16 @@ public class Level {
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
+			this.matcher.incrementNumIndex();
 			//add to the question window.
-			this.QuestionPage.append("\n" + q.toString() + "\n");
+			this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+  q.toString() + "\n");
 			
 			//Can also use Default Caret Bottom.
 			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+			
+			
+			//Spawn monsters (amount based on difficulty)
+			spawnEnemies(q.getDifficulty());
 			
 	}
 	
@@ -126,14 +131,16 @@ public class Level {
 		
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
 		//add to the question window.
-		this.QuestionPage.append("\n" + q.toString() + "\n");
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
 		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
-	
+		//Spawn monsters (amount based on difficulty)
+		spawnEnemies(q.getDifficulty());
 	}
 	
 	public void displayLesson1() {
@@ -159,6 +166,21 @@ public class Level {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void spawnEnemies(int qDifficulty) {
+		int i = 0;
+		while (i < qDifficulty) {
+			//10, 10 is starting coordinates.  Make a randomizer for x coordinate
+			int randX =  new Random().nextInt(486) + 20;
+			for (Enemy enemy: garea.getEnemies()) {
+				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
+					randX =  new Random().nextInt(486) + 20;
+				}
+			}
+			this.garea.addEnemy(new Enemy(randX, 10));
+			i++;
 		}
 	}
 		
