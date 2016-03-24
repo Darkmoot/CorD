@@ -85,7 +85,9 @@ public class GameArea extends JPanel {
 		players.add(player);
 	}
 	
-	public void removeEnemy(Enemy enemy) {
-		enemies.remove(enemy);
+	public void removeEnemy(int index) {
+		if (enemies.size() > index) {
+			enemies.remove(index);
+		}
 	}
 }

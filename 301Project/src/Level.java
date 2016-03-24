@@ -28,6 +28,7 @@ public class Level {
 	private long length;
 	private int numQuestions;
 	
+	private Player player;
 	
 	private ImageIcon icon;
 	
@@ -98,7 +99,8 @@ public class Level {
 		return numQuestions;
 	}
 
-	//spawn random questions of a specific difficulty
+	//spawn random questions of a specific difficulty and spawns the appropriate number
+	//of enemies
 	public void spawnQuestion(int diff) {
 		
 			// Compiles XPath expression that gets questions of a certain difficulty
@@ -121,7 +123,7 @@ public class Level {
 			
 	}
 	
-	//spawn random questions 
+	//spawn random questions  and the appropriate amount of enemies
 	public void spawnQuestion() {
 
 		// Compiles XPath expression that gets questions of a certain difficulty
@@ -169,16 +171,20 @@ public class Level {
 		}
 	}
 	
+	//spawns an enemy located at the top of the game area with a random x coordinate
 	public void spawnEnemies(int qDifficulty) {
 		int i = 0;
+		//For each level of difficulty of the question, add an additional enemy
 		while (i < qDifficulty) {
-			//10, 10 is starting coordinates.  Make a randomizer for x coordinate
+			//Make a random x coordinate
 			int randX =  new Random().nextInt(486) + 20;
+			//Reroll the random x value if it overlaps with previous enemy. Not foolproof
 			for (Enemy enemy: garea.getEnemies()) {
 				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
 					randX =  new Random().nextInt(486) + 20;
 				}
 			}
+			//Add the enemy to the game area
 			this.garea.addEnemy(new Enemy(randX, 10));
 			i++;
 		}

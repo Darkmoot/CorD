@@ -118,7 +118,9 @@ public class Window extends javax.swing.JFrame {
 						*/
 					e.consume(); //consume the regular action of enter
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
-
+					
+					//Mark previous score
+					int prevScore = IMatcher.getScore();
 
 					String resultFromMatching = IMatcher.matchAnswer(lastInput);
 					if (InputText.getCaretPosition() == currentLinePrompt) {
@@ -136,6 +138,12 @@ public class Window extends javax.swing.JFrame {
 						
 						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
+						
+						//Remove appropriate amount of enemies
+						int i;
+						for (i = 0; i < IMatcher.getScore() - prevScore; i++) {
+							gArea.removeEnemy(0);
+						}
 					} 
 					
 					else if (resultFromMatching == "correct") {
