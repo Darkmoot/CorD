@@ -43,9 +43,15 @@ public class Game {
 		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
 		
+		//This section is to test making the enemies move and repaint the GameArea
+		
+		//only do it if 
+		//if (!w.getGameArea().isLessonActive()) {
 		
 		//This section is to make the enemies move and repaint the GameArea
+
 		Timer timer = new Timer();
+		
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
@@ -57,6 +63,8 @@ public class Game {
 			}
 		}, 0, 1*1000); //0 is the delay before the timerTask starts running, 1*1000 is how often it goes off (meaning it goes off every second)
 		
+		
+	
 		Timer t = new Timer();
 		
 		t.schedule(new TimerTask() {
@@ -70,6 +78,8 @@ public class Game {
 			}
 		}, 0, 1*1000);
 		
+		//}
+	
 	}
 	
 

@@ -96,17 +96,27 @@ public class Window extends javax.swing.JFrame {
         InputText.setCaretPosition(4); //set up the caret postion
         currentLinePrompt = InputText.getCaretPosition();
         //System.out.println(InputText.getCaretPosition());
+        
+    //    QuestionText.append("Press Enter to Start Level\n");
         InputText.addKeyListener(new KeyListener() {
         	
         	@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				
-				if (keyCode == KeyEvent.VK_ENTER) {
-					
-					e.consume(); //consume the regular action of enter
 				
 					
+				
+				
+					if (keyCode == KeyEvent.VK_ENTER) {
+						/*if (gArea.isLessonActive()) {
+						//	InputText.append("\nStart Game\n>>> ");
+						//	currentLine+= 2;
+							gArea.toggleLesson();
+						}
+						else {
+						*/
+					e.consume(); //consume the regular action of enter
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
 
 
@@ -127,6 +137,13 @@ public class Window extends javax.swing.JFrame {
 						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
 					} 
+					
+					else if (resultFromMatching == "correct") {
+						//	System.out.println(result);
+							InputText.append("\nAlready Answered\n>>> ");
+							currentLine+= 2;
+							
+						} 
 				
 					else if (resultFromMatching == "incorrect") {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -140,13 +157,16 @@ public class Window extends javax.swing.JFrame {
 				
 					currentLinePrompt = InputText.getCaretPosition();
 					
-				}
+					}
+        
+				//}
 				
 				if (keyCode == KeyEvent.VK_BACK_SPACE) {
 					System.out.println("I pressed the delete button");
 					//If the current caret is equal to the current line prompt:
 					//it means we are at the beginning of undeleteable section of the shell
 					if (InputText.getCaretPosition() == currentLinePrompt) {
+						System.out.println("CANNNOT DELETE");
 						e.consume(); //consume delete aka dont delete text
 					}
 				}
@@ -188,6 +208,13 @@ public class Window extends javax.swing.JFrame {
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        //Testing adding enemy and painting it on to the screen
+		
+        gArea.addEnemy(new Enemy(10, 10));
+		gArea.repaint();	
+		
+		
 		
 		// add scoreboard to game panel
 		gArea.add(scoreboard);

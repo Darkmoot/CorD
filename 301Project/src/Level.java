@@ -108,8 +108,9 @@ public class Level {
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
+			this.matcher.incrementNumIndex();
 			//add to the question window.
-			this.QuestionPage.append("\n" + q.toString() + "\n");
+			this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+  q.toString() + "\n");
 			
 			//Can also use Default Caret Bottom.
 			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
@@ -130,8 +131,9 @@ public class Level {
 		
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
 		//add to the question window.
-		this.QuestionPage.append("\n" + q.toString() + "\n");
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
 		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
