@@ -171,7 +171,12 @@ public class Level {
 		int i = 0;
 		while (i < qDifficulty) {
 			//10, 10 is starting coordinates.  Make a randomizer for x coordinate
-			int randX =  new Random().nextInt(496) + 15;
+			int randX =  new Random().nextInt(486) + 20;
+			for (Enemy enemy: garea.getEnemies()) {
+				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
+					randX =  new Random().nextInt(486) + 20;
+				}
+			}
 			this.garea.addEnemy(new Enemy(randX, 10));
 			i++;
 		}
