@@ -49,7 +49,7 @@ public class GameArea extends JPanel {
 		players.add(player);
 	}
 	
-	public void removeEnemy(Enemy enemy) {
-		enemies.remove(enemy);
+	public void removeEnemy(int index) {
+		enemies.remove(index);
 	}
 }
