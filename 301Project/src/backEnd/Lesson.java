@@ -13,12 +13,11 @@ public class Lesson {
 	private int xCoor;
 	//y value coordinate of the lesson -> should be centered
 	private int Ycoor;
-
 	
 	public Lesson(int x, int y) {
 		//get the image and load it as the variable
 		try {
-			image = ImageIO.read(getClass(). getResourceAsStream("/operatorsLesson.jpg"));
+			image = ImageIO.read(getClass(). getResourceAsStream("/Lessons/operatorsLesson.jpg"));
 		}
 		catch(IOException e) {
 			e.printStackTrace();

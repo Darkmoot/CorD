@@ -11,12 +11,16 @@ public class GameArea extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Enemy> enemies;
 	public ArrayList<Player> players;
-	private List Lesson;
+	
+	//the list of our current lesson, could be changed to a single lesson maybe?
+	private Lesson currentLesson;
+	private boolean showLesson;
 	
 	public GameArea() {
 		enemies = new ArrayList<Enemy>();
 		players = new ArrayList<Player>();
-		Lesson = new ArrayList();
+		currentLesson = new Lesson(0,0);
+		showLesson = true; //set to true initially
 	}
 	
 	@Override
@@ -26,15 +30,23 @@ public class GameArea extends JPanel {
 		//Add a bool for whether to draw
 		//TODO add the paint for lessons
 		
-		for (Player player : players) {
-			//Add two more parameters after getYval to set image dimensions
-			g.drawImage(player.getImage(), player.getXval(), player.getYval(), 40, 52, null);
-		}
+		if (showLesson) {
+			g.drawImage(currentLesson.getImage(), currentLesson.getXCoor(),
+					currentLesson.getYCoor(),530,480,null);
+			
+		}//only render the lesson if we have it set to true
+		else {
 		
-		
-		for (Enemy enemy : enemies) {
-			//Add two more parameters after getYval to set image dimensions
-			g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), 30, 46, null);
+			for (Player player : players) {
+				//Add two more parameters after getYval to set image dimensions
+				g.drawImage(player.getImage(), player.getXval(), player.getYval(), 40, 52, null);
+			}
+			
+			
+			for (Enemy enemy : enemies) {
+				//Add two more parameters after getYval to set image dimensions
+				g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), 30, 46, null);
+			}
 		}
 	}
 
@@ -47,9 +59,16 @@ public class GameArea extends JPanel {
 	}
 	
 	//returns the list for the current lessons
-	public List getLesson() {
-		return this.Lesson;
+	public Lesson getLesson() {
+		return this.currentLesson;
 	}
+	//toggle Lesson
+	public void toggleLesson() {
+		this.showLesson = !this.showLesson;
+		//switch back and forth between shoing the lesson or not
+	}
+	
+	
 
 	public void addEnemy(Enemy enemy) {
 		enemies.add(enemy);
