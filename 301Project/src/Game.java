@@ -44,7 +44,7 @@ public class Game {
 		//l.Question1();
 		
 		
-		//This section is to test making the enemies move and repaint the GameArea
+		//This section is to make the enemies move and repaint the GameArea
 		Timer timer = new Timer();
 		
 		timer.schedule(new TimerTask() {
