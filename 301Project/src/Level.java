@@ -28,12 +28,13 @@ public class Level {
 	private long length;
 	private int numQuestions;
 	
+	private Player player;
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionCreator qc) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc) {
 		
-		//this.garea = gamearea;
+		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		//timer = new Timer();
@@ -98,25 +99,37 @@ public class Level {
 		return numQuestions;
 	}
 
-	//spawn random questions of a specific difficulty
+	//spawn random questions of a specific difficulty and spawns the appropriate number
+	//of enemies
 	public void spawnQuestion(int diff) {
 		
 			// Compiles XPath expression that gets questions of a certain difficulty
 			
 			// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
 			Question q = qc.getRandomQuestionByDiff(diff);
+		
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
+			
+			this.matcher.incrementNumIndex();
+			
+			//set  the index of that question reletive to the list
+			q.setIndex(this.matcher.getNumIndex());
+			
 			//add to the question window.
-			this.QuestionPage.append("\n" + q.toString() + "\n");
+			this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+  q.toString() + "\n");
 			
 			//Can also use Default Caret Bottom.
 			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 			
+			
+			//Spawn monsters (amount based on difficulty)
+			spawnEnemies(q.getDifficulty());
+			
 	}
 	
-	//spawn random questions 
+	//spawn random questions  and the appropriate amount of enemies
 	public void spawnQuestion() {
 
 		// Compiles XPath expression that gets questions of a certain difficulty
@@ -126,14 +139,20 @@ public class Level {
 		
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
+		
+		//set  the index of that question reletive to the list
+		q.setIndex(this.matcher.getNumIndex());
+		
 		//add to the question window.
-		this.QuestionPage.append("\n" + q.toString() + "\n");
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
 		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
-	
+		//Spawn monsters (amount based on difficulty)
+		spawnEnemies(q.getDifficulty());
 	}
 	
 	public void displayLesson1() {
@@ -159,6 +178,25 @@ public class Level {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	//spawns an enemy located at the top of the game area with a random x coordinate
+	public void spawnEnemies(int qDifficulty) {
+		int i = 0;
+		//For each level of difficulty of the question, add an additional enemy
+		while (i < qDifficulty) {
+			//Make a random x coordinate
+			int randX =  new Random().nextInt(486) + 20;
+			//Reroll the random x value if it overlaps with previous enemy. Not foolproof
+			for (Enemy enemy: garea.getEnemies()) {
+				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
+					randX =  new Random().nextInt(486) + 20;
+				}
+			}
+			//Add the enemy to the game area
+			this.garea.addEnemy(new Enemy(randX, 10));
+			i++;
 		}
 	}
 		

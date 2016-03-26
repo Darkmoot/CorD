@@ -1,5 +1,6 @@
 package backEnd;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.xml.xpath.*;
@@ -30,6 +31,7 @@ public class QuestionCreator implements QuestionFactory {
 			Random r = new Random();
 			int index = r.nextInt(nl.getLength());
 			
+			
 			// pull a random question out
 			Element e = (Element) nl.item(index);
 			// Get all the children elements
@@ -40,6 +42,7 @@ public class QuestionCreator implements QuestionFactory {
 			
 			// TODO: get hints as well
 			String question = childs.item(1).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
+			
 			String answer = childs.item(3).getTextContent().replace("\\n", "\n").replace("\\t", "\t");
 			int difficulty = Integer.parseInt(e.getAttributes().getNamedItem("difficulty").getNodeValue());
 			
@@ -72,9 +75,26 @@ public class QuestionCreator implements QuestionFactory {
 		return getQuestionByExpr("//question[@difficulty=" + difficulty + "]");
 	}
 	
+	// Gets a random question that has type t
 	public Question getRandomQuestionByType(type t) {
 		
-		return null;
+		return getQuestionByExpr("//question[types/" + t.toString() + "]");
+	}
+
+	// Gets a random question that has ALL types in lt
+	public Question getRandomQuestionByTypes(List<type> lt) {
+		// TODO Auto-generated method stub
+		String format_types = "[";
+		for (type t : lt) {
+			format_types = format_types.concat("types/" + t.toString() + " and ");
+		}
+		// removes last &
+		
+		format_types = format_types.substring(0, format_types.lastIndexOf("and") - 1);
+		format_types = format_types.concat("]");
+		System.out.println(format_types);
+		return getQuestionByExpr("//question" + format_types);
+		
 	}
 
 }
