@@ -29,7 +29,11 @@
 			<answer>true</answer>
 		</question>
 		<question difficulty="1">
-			<ask>'orange' &gt; 'apple'</ask>
+			<ask>print('orange' &gt; 'apple' or False)</ask>
+			<answer>true</answer>
+		</question>
+		<question difficulty="2">
+			<ask>cloudy = "True"\nnum = 0\nprint(cloudy or 5/num &gt; 3)</ask>
 			<answer>true</answer>
 		</question>
 		<question difficulty="2">
@@ -45,12 +49,16 @@
 			<answer>false</answer>
 		</question>
 		<question difficulty="2">
-			<ask>'apple' &lt; 'banana'</ask>
+			<ask>print(type(20 / 4) == type(10 // 2))</ask>
+			<answer>false</answer>
+		</question>
+		<question difficulty="2">
+			<ask>print('apple' &lt; 'banana' and True)</ask>
 			<answer>true</answer>
 		</question>
 		<question difficulty="2">
-			<ask>(20 / 4) == (10 / 2)</ask>
-			<answer>true</answer>
+			<ask>print(type(20 / 4) == type(10 // 2)) </ask>
+			<answer>false</answer>
 		</question>
 		<question difficulty="4">
 			<ask>values = [3, 7, 2]\nvalues[-1] = 'random'\nprint(values)</ask>
@@ -64,7 +72,7 @@
 			<answer>3</answer>
 		</question>
 		<question difficulty="4">
-			<ask>for (i=0; i&lt;10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
+			<ask>for (i=0; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
 			<answer>10</answer>
 		</question>
 		<question difficulty="3">
