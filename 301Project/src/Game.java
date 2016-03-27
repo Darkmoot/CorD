@@ -42,13 +42,10 @@ public class Game {
 		curLevel.startLevel();
 		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
-		
-		//This section is to test making the enemies move and repaint the GameArea
+
 		
 		//only do it if 
 		//if (!w.getGameArea().isLessonActive()) {
-		
-		//This section is to make the enemies move and repaint the GameArea
 		
 		
 	
