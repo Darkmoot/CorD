@@ -57,11 +57,11 @@ public class Game {
 			public void run() {
 				ArrayList<Enemy> enemies = w.getGameArea().getEnemies();
 				for (Enemy enemy : enemies) {
-					enemy.moveDown(10);
+					enemy.moveDown(1);
 				}
 				w.getGameArea().repaint();
 			}
-		}, 0, 1*1000); //0 is the delay before the timerTask starts running, 1*1000 is how often it goes off (meaning it goes off every second)
+		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
 		
 		
 	

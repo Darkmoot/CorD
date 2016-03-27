@@ -40,7 +40,7 @@ public class Level {
 		//timer = new Timer();
 		this.qc = qc;
 		
-		this.length = 20000; // 5 secs in millisec
+		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
 		// TODO: change this to parameter to allow variable level duration
 		
@@ -70,8 +70,8 @@ public class Level {
 			};
 			
 			
-			long delay = new Random().nextInt(4000) + 1000; // random int between 0 and 4000 (0 and 4 seconds)
-			// add 1000 to this so qs are spawned randomly every 1 to 5 secs
+			long delay = new Random().nextInt(4000) + 11000; // random int between 0 and 4000 (0 and 4 seconds)
+			// add 11000 to this so qs are spawned randomly every 11 to 15 secs
 			// TODO: Find apropriate delay, maybe based on level/dificulty
 			long curDelay = delay + previous;
 			t.schedule(spawner, curDelay);
