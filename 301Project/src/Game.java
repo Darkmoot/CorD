@@ -49,19 +49,6 @@ public class Game {
 		//if (!w.getGameArea().isLessonActive()) {
 		
 		//This section is to make the enemies move and repaint the GameArea
-
-		Timer timer = new Timer();
-		
-		
-		timer.schedule(new TimerTask() {
-			public void run() {
-				ArrayList<Enemy> enemies = w.getGameArea().getEnemies();
-				for (Enemy enemy : enemies) {
-					enemy.moveDown(1);
-				}
-				w.getGameArea().repaint();
-			}
-		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
 		
 		
 	

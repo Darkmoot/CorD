@@ -81,6 +81,19 @@ public class Level {
 			
 		}
 		
+		Timer timer = new Timer();
+		
+		
+		timer.schedule(new TimerTask() {
+			public void run() {
+				ArrayList<Enemy> enemies =garea.getEnemies();
+				for (Enemy enemy : enemies) {
+					enemy.moveDown(1);
+				}
+				garea.repaint();
+			}
+		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
+		
 		return sl;
 	}
 	
