@@ -27,18 +27,20 @@ public class Level {
 	private GameArea garea;
 	private long length;
 	private int numQuestions;
+	private Lesson lesson;
 	
 	private Player player;
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson) {
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		//timer = new Timer();
 		this.qc = qc;
+		this.lesson = lesson;
 		
 		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
@@ -59,6 +61,16 @@ public class Level {
 		long previous = 0;
 		
 		List<Long> sl = new ArrayList<>();
+		
+		if (garea.isLessonActive()) {
+			garea.repaint();
+			try {
+				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			garea.toggleLesson();
+		}
 		
 		while (previous <= this.length) {
 			

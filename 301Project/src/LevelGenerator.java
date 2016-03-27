@@ -34,7 +34,7 @@ public class LevelGenerator {
 	public Level createLevel() {
 		
 		this.curLevel++;
-		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf);
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, new Lesson(0 , 0));
 		
 		
 		return level;
