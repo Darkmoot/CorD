@@ -17,7 +17,7 @@ public class Lesson {
 	public Lesson(int x, int y) {
 		//get the image and load it as the variable
 		try {
-			image = ImageIO.read(getClass(). getResourceAsStream("/Lessons/operatorsLesson.jpg"));
+			image = ImageIO.read(getClass(). getResourceAsStream("/Lessons/lesson2.jpg"));
 		}
 		catch(IOException e) {
 			e.printStackTrace();

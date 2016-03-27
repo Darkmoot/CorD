@@ -27,20 +27,22 @@ public class Level {
 	private GameArea garea;
 	private long length;
 	private int numQuestions;
+	private Lesson lesson;
 	
 	private Player player;
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson) {
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		//timer = new Timer();
 		this.qc = qc;
+		this.lesson = lesson;
 		
-		this.length = 20000; // 5 secs in millisec
+		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
 		// TODO: change this to parameter to allow variable level duration
 		
@@ -60,6 +62,16 @@ public class Level {
 		
 		List<Long> sl = new ArrayList<>();
 		
+		if (garea.isLessonActive()) {
+			garea.repaint();
+			try {
+				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			garea.toggleLesson();
+		}
+		
 		while (previous <= this.length) {
 			
 			TimerTask spawner = new TimerTask() {
@@ -70,8 +82,8 @@ public class Level {
 			};
 			
 			
-			long delay = new Random().nextInt(4000) + 1000; // random int between 0 and 4000 (0 and 4 seconds)
-			// add 1000 to this so qs are spawned randomly every 1 to 5 secs
+			long delay = new Random().nextInt(4000) + 11000; // random int between 0 and 4000 (0 and 4 seconds)
+			// add 11000 to this so qs are spawned randomly every 11 to 15 secs
 			// TODO: Find apropriate delay, maybe based on level/dificulty
 			long curDelay = delay + previous;
 			t.schedule(spawner, curDelay);
@@ -80,6 +92,19 @@ public class Level {
 			this.numQuestions ++;
 			
 		}
+		
+		Timer timer = new Timer();
+		
+		
+		timer.schedule(new TimerTask() {
+			public void run() {
+				ArrayList<Enemy> enemies =garea.getEnemies();
+				for (Enemy enemy : enemies) {
+					enemy.moveDown(1);
+				}
+				garea.repaint();
+			}
+		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
 		
 		return sl;
 	}
