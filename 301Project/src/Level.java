@@ -182,6 +182,9 @@ public class Level {
 		//Spawn monsters (amount based on difficulty)
 		spawnEnemies(q.getDifficulty());
 		spawnPlayer();
+		if(garea.players.size() > 1){
+			garea.removePlayer(0);
+		}
 	}
 	
 	public void displayLesson1() {
