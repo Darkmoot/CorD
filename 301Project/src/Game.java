@@ -47,21 +47,6 @@ public class Game {
 		//only do it if 
 		//if (!w.getGameArea().isLessonActive()) {
 		
-		
-	
-		Timer t = new Timer();
-		
-		t.schedule(new TimerTask() {
-			public void run() {
-				ArrayList<Player> players = w.getGameArea().getPlayers();
-				for (Player player : players) {
-					System.out.println("Check");
-					System.out.println(player);
-				}
-				w.getGameArea().repaint();
-			}
-		}, 0, 1*1000);
-		
 		//}
 	
 	}
