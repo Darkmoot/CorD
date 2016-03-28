@@ -102,12 +102,15 @@ public class Level {
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
 				}
+				
 				garea.repaint();
 			}
 		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
 		
 		return sl;
 	}
+	
+	
 	
 	
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
@@ -171,13 +174,14 @@ public class Level {
 		
 		//add to the question window.
 		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
-		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
+		System.out.println("the answer is " + q.getAnswer() + "\nlen is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
 		//Spawn monsters (amount based on difficulty)
 		spawnEnemies(q.getDifficulty());
+		spawnPlayer();
 	}
 	
 	public void displayLesson1() {
@@ -206,6 +210,7 @@ public class Level {
 		}
 	}
 	
+	int px;
 	//spawns an enemy located at the top of the game area with a random x coordinate
 	public void spawnEnemies(int qDifficulty) {
 		int i = 0;
@@ -220,10 +225,15 @@ public class Level {
 				}
 			}
 			//Add the enemy to the game area
+			px = randX;
 			this.garea.addEnemy(new Enemy(randX, 10));
 			i++;
 		}
 	}
 		
+	public void spawnPlayer() {
+			this.garea.addPlayer(new Player(px, 400));
+			
+	}
 	
 }
