@@ -21,7 +21,7 @@ import userInterface.Window;
 
 public class Game {
 	
-	public static type[][] levelTypes = {{type.VAR, type.ARITHMETIC}, {type.LIST}, {type.FOR}};
+	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
 	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/loops.jpg"};
 	
 	public static void main(String[] args) {
@@ -44,15 +44,16 @@ public class Game {
 		int level = 0;
 		
 			
-		List<type> tt = Arrays.asList(levelTypes[1]);
+		List<type> tt = Arrays.asList(levelTypes[level]);
+		// curently level qtypes dont match with lessons
 		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 		List<Long> times = curLevel.startLevel();
-		level ++;
+		//level ++;
 		
 		while (true) {
 			
 			// should wait till last question is asked - currently it is going a bit early
-			if (System.currentTimeMillis() >= times.get(times.size() - 1)) {
+			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
 				System.out.println("time");
 				System.out.println(w.getGameArea().getEnemies().size());
 			
@@ -61,11 +62,13 @@ public class Game {
 				if (w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
-					w.setGameArea();
-					tt = Arrays.asList(levelTypes[1]);
-					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[0]), tt);
+					// also curently just using same question types and lesson
+					//w.setGameArea();
+					tt = Arrays.asList(levelTypes[level]);
+					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
+					
 					times = curLevel.startLevel();
-					level ++;
+					//level ++;
 				}
 			}
 			//}
