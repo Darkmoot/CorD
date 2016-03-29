@@ -31,7 +31,6 @@ public class GameArea extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		System.out.println("k");
 		
 		//Add a bool for whether to draw
 		//TODO add the paint for lessons

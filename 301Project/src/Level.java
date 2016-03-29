@@ -29,12 +29,13 @@ public class Level {
 	private long length;
 	private int numQuestions;
 	private Lesson lesson;
+	private List<type> qtypes;
 	
 	private Player player;
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes) {
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
@@ -45,6 +46,7 @@ public class Level {
 		
 		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
+		this.qtypes = qtypes;
 		// TODO: change this to parameter to allow variable level duration
 		
 		
@@ -82,7 +84,7 @@ public class Level {
 			TimerTask spawner = new TimerTask() {
 				@Override
 				public void run() {
-					spawnQuestion();	
+					spawnQuestionByTypes();	
 				}
 			};
 			
@@ -132,9 +134,12 @@ public class Level {
 		return numQuestions;
 	}
 	
-	public void spawnQuestionByTypes(List<type> lt) {
+	public void spawnQuestionByTypes() {
 		
-		Question q = qc.getRandomQuestionByTypes(lt);
+		
+		System.out.println("x");
+		Question q = qc.getRandomQuestionByTypes(this.qtypes);
+		System.out.println(q);
 		
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);

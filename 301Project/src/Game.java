@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,9 +41,38 @@ public class Game {
 //		lt.add(type.CALL);
 //		lt.add(type.LIST);
 //		System.out.println(qc.getRandomQuestionByTypes(lt));
+		int level = 0;
 		
-		Level curLevel = lgen.createLevel(new Lesson(0, 0, "/Lessons/lesson2.jpg"));
-		curLevel.startLevel();
+			
+		List<type> tt = Arrays.asList(levelTypes[1]);
+		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
+		List<Long> times = curLevel.startLevel();
+		level ++;
+		
+		while (true) {
+			
+			// should wait till last question is asked - currently it is going a bit early
+			if (System.currentTimeMillis() >= times.get(times.size() - 1)) {
+				System.out.println("time");
+				System.out.println(w.getGameArea().getEnemies().size());
+			
+				// wait to check if no enemies left
+				// need to add checker to see if they lost too
+				if (w.getGameArea().getEnemies().size() == 0) {
+				
+					// clear stuff of screen here to start new level
+					w.setGameArea();
+					tt = Arrays.asList(levelTypes[1]);
+					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[0]), tt);
+					times = curLevel.startLevel();
+					level ++;
+				}
+			}
+			//}
+			
+		}
+		
+		
 //		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
 

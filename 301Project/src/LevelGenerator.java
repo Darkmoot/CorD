@@ -20,7 +20,7 @@ import backEnd.Question.type;
 
 public class LevelGenerator {
 	
-	public static type[][] levels = {{type.VAR, type.ARITHMETIC}, {type.LIST}, {type.FOR}};
+	
 	
 	// code moved to Level
 	// use this to generate the levels
@@ -36,10 +36,10 @@ public class LevelGenerator {
 		
 	}
 	
-	public Level createLevel(Lesson l) {
+	public Level createLevel(Lesson lesson, List<type> qtypes) {
 		
 		this.curLevel++;
-		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, l);
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes);
 		
 		
 		return level;
