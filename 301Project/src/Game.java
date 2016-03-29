@@ -20,6 +20,9 @@ import userInterface.Window;
 
 public class Game {
 	
+	public static type[][] levelTypes = {{type.VAR, type.ARITHMETIC}, {type.LIST}, {type.FOR}};
+	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/loops.jpg"};
+	
 	public static void main(String[] args) {
 		
 		Window w = new Window();
