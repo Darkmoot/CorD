@@ -27,19 +27,22 @@ public class Level {
 	private GameArea garea;
 	private long length;
 	private int numQuestions;
+	private Lesson lesson;
 	
+	private Player player;
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, /*GameArea gamearea,*/ QuestionFactory qc) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson) {
 		
-		//this.garea = gamearea;
+		this.garea = gamearea;
 		this.QuestionPage = Question;
 		this.matcher = matcher;
 		//timer = new Timer();
 		this.qc = qc;
+		this.lesson = lesson;
 		
-		this.length = 20000; // 5 secs in millisec
+		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
 		// TODO: change this to parameter to allow variable level duration
 		
@@ -59,6 +62,16 @@ public class Level {
 		
 		List<Long> sl = new ArrayList<>();
 		
+		if (garea.isLessonActive()) {
+			garea.repaint();
+			try {
+				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			garea.toggleLesson();
+		}
+		
 		while (previous <= this.length) {
 			
 			TimerTask spawner = new TimerTask() {
@@ -69,8 +82,8 @@ public class Level {
 			};
 			
 			
-			long delay = new Random().nextInt(4000) + 1000; // random int between 0 and 4000 (0 and 4 seconds)
-			// add 1000 to this so qs are spawned randomly every 1 to 5 secs
+			long delay = new Random().nextInt(4000) + 11000; // random int between 0 and 4000 (0 and 4 seconds)
+			// add 11000 to this so qs are spawned randomly every 11 to 15 secs
 			// TODO: Find apropriate delay, maybe based on level/dificulty
 			long curDelay = delay + previous;
 			t.schedule(spawner, curDelay);
@@ -80,8 +93,24 @@ public class Level {
 			
 		}
 		
+		Timer timer = new Timer();
+		
+		
+		timer.schedule(new TimerTask() {
+			public void run() {
+				ArrayList<Enemy> enemies =garea.getEnemies();
+				for (Enemy enemy : enemies) {
+					enemy.moveDown(1);
+				}
+				
+				garea.repaint();
+			}
+		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
+		
 		return sl;
 	}
+	
+	
 	
 	
 	//Create new Question return that question. -> input matcher should change its name, it stores all questions
@@ -98,25 +127,37 @@ public class Level {
 		return numQuestions;
 	}
 
-	//spawn random questions of a specific difficulty
+	//spawn random questions of a specific difficulty and spawns the appropriate number
+	//of enemies
 	public void spawnQuestion(int diff) {
 		
 			// Compiles XPath expression that gets questions of a certain difficulty
 			
 			// Uses the Question creator, and passes it the expr, in order to get a random question satisfying the expression
 			Question q = qc.getRandomQuestionByDiff(diff);
+		
 			
 			//add to the matcher
 			this.matcher.addToCurrentQuestions(q);
+			
+			this.matcher.incrementNumIndex();
+			
+			//set  the index of that question reletive to the list
+			q.setIndex(this.matcher.getNumIndex());
+			
 			//add to the question window.
-			this.QuestionPage.append("\n" + q.toString() + "\n");
+			this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+  q.toString() + "\n");
 			
 			//Can also use Default Caret Bottom.
 			QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 			
+			
+			//Spawn monsters (amount based on difficulty)
+			spawnEnemies(q.getDifficulty());
+			
 	}
 	
-	//spawn random questions 
+	//spawn random questions  and the appropriate amount of enemies
 	public void spawnQuestion() {
 
 		// Compiles XPath expression that gets questions of a certain difficulty
@@ -126,14 +167,24 @@ public class Level {
 		
 		//add to the matcher
 		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
+		
+		//set  the index of that question reletive to the list
+		q.setIndex(this.matcher.getNumIndex());
+		
 		//add to the question window.
-		this.QuestionPage.append("\n" + q.toString() + "\n");
-		System.out.println("the answer is " + q.getAnswer() + "len is " + q.getAnswer().length());
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
+		System.out.println("the answer is " + q.getAnswer() + "\nlen is " + q.getAnswer().length());
 		
 		//Can also use Default Caret Bottom.
 		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
 		
-	
+		//Spawn monsters (amount based on difficulty)
+		spawnEnemies(q.getDifficulty());
+		spawnPlayer();
+		if(garea.players.size() > 1){
+			garea.removePlayer(0);
+		}
 	}
 	
 	public void displayLesson1() {
@@ -161,6 +212,31 @@ public class Level {
 			e.printStackTrace();
 		}
 	}
+	
+	int px;
+	//spawns an enemy located at the top of the game area with a random x coordinate
+	public void spawnEnemies(int qDifficulty) {
+		int i = 0;
+		//For each level of difficulty of the question, add an additional enemy
+		while (i < qDifficulty) {
+			//Make a random x coordinate
+			int randX =  new Random().nextInt(486) + 20;
+			//Reroll the random x value if it overlaps with previous enemy. Not foolproof
+			for (Enemy enemy: garea.getEnemies()) {
+				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
+					randX =  new Random().nextInt(486) + 20;
+				}
+			}
+			//Add the enemy to the game area
+			px = randX;
+			this.garea.addEnemy(new Enemy(randX, 10));
+			i++;
+		}
+	}
 		
+	public void spawnPlayer() {
+			this.garea.addPlayer(new Player(px, 400));
+			
+	}
 	
 }

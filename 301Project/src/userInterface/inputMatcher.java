@@ -11,12 +11,14 @@ import backEnd.Question;
 
 public class inputMatcher {
 	
+	//index for the questions
+	private int numIndex;
+	
 	//the last command input
 	private String command;
 	
-	//the 
+	//the list of all answered questions -> could change to dictionary
 	private List<Question> currentQuestions;
-	
 	
 	
 	private JTextArea console; //the actual console
@@ -29,6 +31,7 @@ public class inputMatcher {
 		this.command = command;
 		this.currentQuestions = currentQuestions;
 		//this.console = c;
+		this.numIndex = -1;
 	}
 	
 	
@@ -39,6 +42,24 @@ public class inputMatcher {
 	//set the command to a new one
 	public void setCommand(String newCommand) {
 		this.command = newCommand;
+	}
+	
+	public List<Object> getUnanswered() {
+		List<Object> returnval= new ArrayList<Object>();
+		String unanswered = "\n";
+		int numUnanswered = 1;
+		for (Question q: this.getCurrentQuestions()) {
+			if (!q.isAnswered()) {
+				unanswered += "Question - " + q.getIndex() + "\n";
+				numUnanswered ++;
+			}
+		}
+		
+		//return he string and int
+		returnval.add(0,unanswered);
+		returnval.add(1, numUnanswered);
+		return returnval;
+		
 	}
 	
 	//get the set of questions
@@ -61,6 +82,20 @@ public class inputMatcher {
 		System.out.println("nothing");
 	}
 	
+	//returnt the size of the questions array
+	public int getNumIndex() {
+		return this.numIndex;
+	}
+	
+	
+	//when we generate a new question and load it to the screen we
+	//increment the thing by one
+	public void incrementNumIndex() {
+		this.numIndex ++;
+		
+	}
+	
+	
 	//should fix error
 	//rather then remove, keep the question on the screen and just disable it.
 	public String matchAnswer(String answer) {
@@ -81,8 +116,12 @@ public class inputMatcher {
 			return "index out of bounds";
 		}
 		Question q = this.currentQuestions.get(index);
-		if (q.getAnswer().equals(input)) {
+		if (q.isAnswered()) {
+			return "already Answered!";
+		}
+		else if (q.getAnswer().equals(input)) {
 			score += q.getDifficulty();
+			q.setAnswered();
 			return "correct";
 		}
 		else {

@@ -13,7 +13,6 @@ public class Player implements MovingSprite {
 	private int xval;
 	//y value coordinate of the enemy
 	private int yval;
-	private boolean paused;
 		
 	public Player(int x, int y) {
 		try {

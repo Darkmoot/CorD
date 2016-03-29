@@ -1,13 +1,17 @@
 package userInterface;
 
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
@@ -41,8 +45,13 @@ public class Window extends javax.swing.JFrame {
     
     //the inputMatcher
     private inputMatcher IMatcher;
-   
     
+    Color GAMECOLOR = new Color(188, 216, 245);
+    Color INPUTBACKGROUNDCOLOR = new Color(197,251,183);
+    Color QUESTIONBACKGROUNDCOLOR = new Color(202, 193, 232);
+    Color QUESTIONFONTCOLOR = new Color(88,0,176);
+    Font font1 = new Font ("Verdana", 0 , 14);
+    Font font2 = new Font ("Verdana", Font.BOLD , 14);
     // End of variables declaration    
 	
 	/**
@@ -69,8 +78,9 @@ public class Window extends javax.swing.JFrame {
         QuestionText = new javax.swing.JTextArea();
        
         // initial score 0
-        scoreboard = new JLabel("Score: 0", JLabel.RIGHT);
-        scoreboard.setSize(100,100);
+        scoreboard = new JLabel("Score: 0");
+        scoreboard.setSize(100,25);
+        scoreboard.setFont(font2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -80,22 +90,51 @@ public class Window extends javax.swing.JFrame {
         InputText.setRows(5);
         InputScroll.requestFocus();
         
+        InputText.setBackground(INPUTBACKGROUNDCOLOR);
+        InputText.setFont(font1);
+       
+        
         InputText.setCaretPosition(4); //set up the caret postion
         currentLinePrompt = InputText.getCaretPosition();
         //System.out.println(InputText.getCaretPosition());
+        
+    //    QuestionText.append("Press Enter to Start Level\n");
         InputText.addKeyListener(new KeyListener() {
         	
         	@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				
-				if (keyCode == KeyEvent.VK_ENTER) {
-					
-					e.consume(); //consume the regular action of enter
 				
 					
+				
+				
+					if (keyCode == KeyEvent.VK_ENTER) {
+						/*if (gArea.isLessonActive()) {
+						//	InputText.append("\nStart Game\n>>> ");
+						//	currentLine+= 2;
+							gArea.toggleLesson();
+						}
+						else {
+						*/
+					e.consume(); //consume the regular action of enter
 					lastInput = InputText.getText().split("\n")[currentLine].substring(4);
-
+					System.out.println(lastInput);
+					if (lastInput.trim().equals("getUnanswered()")) {
+						System.out.println("GOT TO this");
+						//return the set of unanswered answeres.
+						List  unansweredFeedback = IMatcher.getUnanswered();
+						InputText.append((String)unansweredFeedback.get(0));
+						
+						InputText.append("\n>>> ");
+						currentLine += (int)unansweredFeedback.get(1) + 1;
+						
+					}
+					
+					else {
+					
+					//Mark previous score
+					int prevScore = IMatcher.getScore();
 
 					String resultFromMatching = IMatcher.matchAnswer(lastInput);
 					if (InputText.getCaretPosition() == currentLinePrompt) {
@@ -111,9 +150,22 @@ public class Window extends javax.swing.JFrame {
 						InputText.append("\nCorrect Answer\n>>> ");
 						currentLine+= 2;
 						
-						// update score with correct anwser 
+						// update score with correct answer 
 						scoreboard.setText("Score: " + IMatcher.getScore());
+						
+						//Remove appropriate amount of enemies
+						int i;
+						for (i = 0; i < IMatcher.getScore() - prevScore; i++) {
+							gArea.removeEnemy(0);
+						}
 					} 
+					
+					else if (resultFromMatching == "correct") {
+						//	System.out.println(result);
+							InputText.append("\nAlready Answered\n>>> ");
+							currentLine+= 2;
+							
+						} 
 				
 					else if (resultFromMatching == "incorrect") {
 						InputText.append("\nIncorrect Answer\n>>> ");
@@ -127,13 +179,17 @@ public class Window extends javax.swing.JFrame {
 				
 					currentLinePrompt = InputText.getCaretPosition();
 					
+					}
 				}
+        
+				//}
 				
 				if (keyCode == KeyEvent.VK_BACK_SPACE) {
 					System.out.println("I pressed the delete button");
 					//If the current caret is equal to the current line prompt:
 					//it means we are at the beginning of undeleteable section of the shell
 					if (InputText.getCaretPosition() == currentLinePrompt) {
+						System.out.println("CANNNOT DELETE");
 						e.consume(); //consume delete aka dont delete text
 					}
 				}
@@ -159,11 +215,12 @@ public class Window extends javax.swing.JFrame {
         	
         });
         
-        
+      
         InputScroll.setViewportView(InputText);
 
         javax.swing.GroupLayout GameAreaLayout = new javax.swing.GroupLayout(gArea);
-        gArea.setBackground(java.awt.Color.WHITE);
+        gArea.setBackground(GAMECOLOR);
+        gArea.setBorder(BorderFactory.createLineBorder(Color.black));
         gArea.setLayout(GameAreaLayout);
         GameAreaLayout.setHorizontalGroup(
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,14 +231,11 @@ public class Window extends javax.swing.JFrame {
             GameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        //Testing adding enemy and painting it on to the screen
-		gArea.addEnemy(new Enemy(10, 10));
-		gArea.repaint();	
+		
 		
 		// add scoreboard to game panel
 		gArea.add(scoreboard);
-		scoreboard.setLocation(375, 0);
+		scoreboard.setLocation(430, 10);
 
 
         QuestionText.setColumns(20);
@@ -191,6 +245,11 @@ public class Window extends javax.swing.JFrame {
         QuestionText.setEditable(false);
         
         
+        
+        QuestionText.setBackground(QUESTIONBACKGROUNDCOLOR);
+        QuestionText.setForeground(QUESTIONFONTCOLOR);
+        QuestionText.setFont(font1);
+
         
         QuestionScroll.setViewportView(QuestionText);
         
@@ -233,6 +292,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         setVisible(true);
+        getContentPane().setBackground(Color.BLACK);
         pack();
     }    
     

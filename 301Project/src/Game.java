@@ -42,34 +42,13 @@ public class Game {
 		curLevel.startLevel();
 		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
+
 		
+		//only do it if 
+		//if (!w.getGameArea().isLessonActive()) {
 		
-		//This section is to test making the enemies move and repaint the GameArea
-		Timer timer = new Timer();
-		
-		timer.schedule(new TimerTask() {
-			public void run() {
-				ArrayList<Enemy> enemies = w.getGameArea().getEnemies();
-				for (Enemy enemy : enemies) {
-					enemy.moveDown(10);
-				}
-				w.getGameArea().repaint();
-			}
-		}, 0, 1*1000); //0 is the delay before the timerTask starts running, 1*1000 is how often it goes off (meaning it goes off every second)
-		
-		Timer t = new Timer();
-		
-		t.schedule(new TimerTask() {
-			public void run() {
-				ArrayList<Player> players = w.getGameArea().getPlayers();
-				for (Player player : players) {
-					System.out.println("Check");
-					System.out.println(player);
-				}
-				w.getGameArea().repaint();
-			}
-		}, 0, 1*1000);
-		
+		//}
+	
 	}
 	
 

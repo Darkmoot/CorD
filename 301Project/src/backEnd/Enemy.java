@@ -13,7 +13,6 @@ public class Enemy implements MovingSprite {
 	private int xval;
 	//y value coordinate of the enemy
 	private int yval;
-	private boolean paused;
 	
 	public Enemy(int x, int y) {
 		//Current image used licenced under Creative Commons 3.0.  Attribution to: Irina Mir (irmirx)
