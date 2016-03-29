@@ -14,10 +14,10 @@ public class Lesson {
 	//y value coordinate of the lesson -> should be centered
 	private int Ycoor;
 	
-	public Lesson(int x, int y) {
+	public Lesson(int x, int y, String path) {
 		//get the image and load it as the variable
 		try {
-			image = ImageIO.read(getClass(). getResourceAsStream("/Lessons/lesson2.jpg"));
+			image = ImageIO.read(getClass(). getResourceAsStream(path));
 		}
 		catch(IOException e) {
 			e.printStackTrace();

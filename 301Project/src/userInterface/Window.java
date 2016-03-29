@@ -69,7 +69,7 @@ public class Window extends javax.swing.JFrame {
     private void initComponents() { 
     	this.IMatcher = new inputMatcher("none", new ArrayList<Question>());
     	this.currentLine = 0;
-    	
+    	System.out.println("12");
     	this.setTitle("Programming Game");
         InputScroll = new javax.swing.JScrollPane();
         InputText = new javax.swing.JTextArea(">>> ");

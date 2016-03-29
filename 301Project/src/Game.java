@@ -27,20 +27,20 @@ public class Game {
 		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lgen = new LevelGenerator(w, qc);
 		// Testing get question by type
-		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
-		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
-		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
-		System.out.println(qc.getRandomQuestionByType(type.LIST)+"\n");
+//		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+//		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+//		System.out.println(qc.getRandomQuestionByType(type.ARITHMETIC)+"\n");
+//		System.out.println(qc.getRandomQuestionByType(type.LIST)+"\n");
+//		
+//		// testing get question by types
+//		List<type> lt = new ArrayList<>();
+//		lt.add(type.CALL);
+//		lt.add(type.LIST);
+//		System.out.println(qc.getRandomQuestionByTypes(lt));
 		
-		// testing get question by types
-		List<type> lt = new ArrayList<>();
-		lt.add(type.CALL);
-		lt.add(type.LIST);
-		System.out.println(qc.getRandomQuestionByTypes(lt));
-		
-		Level curLevel = lgen.createLevel();
+		Level curLevel = lgen.createLevel(new Lesson(0, 0, "/Lessons/lesson2.jpg"));
 		curLevel.startLevel();
-		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
+//		System.out.println("this many questions asked: " + curLevel.getNumQuestions());
 		//l.Question1();
 
 		

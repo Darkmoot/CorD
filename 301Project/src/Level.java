@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 
 import userInterface.*;
 import backEnd.*;
+import backEnd.Question.type;
 
 public class Level {
 	
@@ -62,6 +63,10 @@ public class Level {
 		
 		List<Long> sl = new ArrayList<>();
 		
+		System.out.println("1");
+		garea.setLesson(lesson);
+		System.out.println("2");
+		
 		if (garea.isLessonActive()) {
 			garea.repaint();
 			try {
@@ -98,7 +103,7 @@ public class Level {
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
-				ArrayList<Enemy> enemies =garea.getEnemies();
+				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
 				}
@@ -125,6 +130,32 @@ public class Level {
 	
 	public int getNumQuestions() {
 		return numQuestions;
+	}
+	
+	public void spawnQuestionByTypes(List<type> lt) {
+		
+		Question q = qc.getRandomQuestionByTypes(lt);
+		
+		//add to the matcher
+		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
+		
+		//set  the index of that question reletive to the list
+		q.setIndex(this.matcher.getNumIndex());
+		
+		//add to the question window.
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
+		System.out.println("the answer is " + q.getAnswer() + "\nlen is " + q.getAnswer().length());
+		
+		//Can also use Default Caret Bottom.
+		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+		
+		//Spawn monsters (amount based on difficulty)
+		spawnEnemies(q.getDifficulty());
+		spawnPlayer();
+		if(garea.players.size() > 1){
+			garea.removePlayer(0);
+		}
 	}
 
 	//spawn random questions of a specific difficulty and spawns the appropriate number
