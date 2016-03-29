@@ -27,14 +27,14 @@
 		<question difficulty="1">
 			<ask>5 &gt; 3</ask>
 			<answer>true</answer>
+			<types>
+				<ARITHMETIC /></types>
 		</question>
 		<question difficulty="1">
-			<ask>print('orange' &gt; 'apple' or False)</ask>
+			<ask>'orange' &gt; 'apple'</ask>
 			<answer>true</answer>
-		</question>
-		<question difficulty="2">
-			<ask>cloudy = "True"\nnum = 1\nprint(cloudy or 5/num &gt; 3)</ask>
-			<answer>true</answer>
+			<types>
+				<ARITHMETIC /></types>
 		</question>
 		<question difficulty="5">
 			<ask>a_list = [13, 4, 7]\nb_list = a_list.append(5)\na_list == b_list?</ask>
@@ -45,8 +45,10 @@
 			</types>
 		</question>
 		<question difficulty="2">
-			<ask>('apple' &lt; 'banana' and True)</ask>
+			<ask>'apple' &lt; 'banana' </ask>
 			<answer>true</answer>
+			<types>
+				<ARITHMETIC /></types>
 		</question>
 		<question difficulty="2">
 			<ask>type(20 / 4) == type(10 // 2)</ask>
@@ -54,7 +56,69 @@
 		</question>
 		<question difficulty="4">
 			<ask>values = [3, 7, 2]\nvalues[0] == 7? </ask>
+			<answer>false</answer>
+			<types>
+				<LIST /></types>
+		</question>
+		<question difficulty="1">
+			<ask>name = 'Alice' \n name is type string, true or false?</ask>
 			<answer>true</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="1">
+			<ask>number = 2 \n number is type int, true or false?</ask>
+			<answer>true</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="1">
+			<ask>number = 2.5 \n number is of type float, true or false?</ask>
+			<answer>true</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="2">
+			<ask>number = 3.14 \n number is of type integer true or false?</ask>
+			<answer>false</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="1">
+			<ask>name = 'Bob' \n The value of the variable, name, is 'Bob', true or false?</ask>
+			<answer>true</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="2">
+			<ask>list_words = ['dog', 'cat', 'fish'] \nlist_words[0]=='dog'</ask>
+			<answer>true</answer>
+			<types>
+				<LIST /></types>
+		</question>
+		<question difficulty="2">
+			<ask>list_names = ['Alice', 'Bob', 'Spongebob']\n list_names[1]=='Alice'</ask>
+			<answer>false</answer>
+			<types>
+				<LIST /></types>
+		</question>
+		<question difficulty="3">
+			<ask>list = ['pie', 'cake', 'candy', 'chocolate'] \nfor food in list: \n\tprint(food)\nPrints: \n'pie'\n'cake'\n'candy'\n'chocolate'\ntrue or false?</ask>
+			<answer>true</answer>
+			<types>
+				<FOR /></types>
+		</question>
+		<question difficulty="2">
+			<ask>list = [1,2,3]\nfor number in list:\nprint('hello')\nprints 'hello' 3 times, true or false?</ask>
+			<answer>true</answer>
+			<types>
+				<FOR /></types>
+		</question>
+		<question difficulty="2">
+			<ask>list = [1,2,3,4,5]\nfor number in list:\nprint('bye')\nprints 'bye' 3 times, true or false?</ask>
+			<answer>false</answer>
+			<types>
+				<FOR /></types>
 		</question>
 	</true-false-questions>
 
@@ -64,20 +128,26 @@
 			<answer>1</answer>
 		</question>
 		<question difficulty="4">
-			<ask>for (i=0; i&lt;=10; i++)\n\t{throw a fireball}\nhow many fireballs are thrown?</ask>
+			<ask>for i in range(10)\n\tthrow a fireball\nhow many fireballs are thrown?</ask>
 			<answer>10</answer>
+			<types>
+				<FOR /></types>
 		</question>
 		<question difficulty="3">
-			<ask>i = 0; while ( i &lt; 5)\n\t{ i += 1}\nreturn i</ask>
+			<ask>i = 0\n while  i &lt; 5\n\t i = i +1\nreturn i</ask>
 			<answer>5</answer>
 		</question>
 		<question difficulty="3">
-			<ask>return (20 / 2 ** 2 + 3)</ask>
-			<answer>8.0</answer>
+			<ask>20 //2 ** 2 + 3</ask>
+			<answer>8</answer>
+			<types>
+				<ARITHMETIC /></types>
 		</question>
 		<question difficulty="1">
 			<ask>s = "hi there"\nreturn s[3]</ask>
 			<answer>t</answer>
+			<types>
+				<VAR /></types>
 		</question>
 		<question difficulty="1">
 			<ask>values = [3, 7, 2]\nvalues.append(4)\nreturn values</ask>
@@ -86,10 +156,26 @@
 		<question difficulty="5">
 			<ask>words = ['best', 'of', 'luck']\nwords.append(words[0])\nreturn words</ask>
 			<answer>[’best’, ’of’, ’luck’, ’best’]</answer>
+			<types>
+				<LIST /></types>
 		</question>
 		<question difficulty="1">
-			<ask>return (10 / 5 * 2)</ask>
+			<ask>return (10 / 5 * 2) /n note: return value is of type float</ask>
 			<answer>4.0</answer>
+			<types>
+				<ARITHMETIC /></types>
+		</question>
+		<question difficulty="1">
+			<ask>x = 5 \n what is the value of x?</ask>
+			<answer>5</answer>
+			<types>
+				<VAR /></types>
+		</question>
+		<question difficulty="2">
+			<ask>x = 3*3 \nWhat is the value of x?</ask>
+			<answer>9</answer>
+			<types>
+				<VAR /></types>
 		</question>
 	</return-value-questions>
 </questions>
