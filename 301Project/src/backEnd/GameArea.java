@@ -81,7 +81,6 @@ public class GameArea extends JPanel {
 
 	public void addPlayer(Player player) {
 		players.add(player);
-		System.out.println("These are the players: " + players);
 	}
 	
 	public void removeEnemy(int index) {
