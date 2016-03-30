@@ -77,6 +77,7 @@ public class Level {
 			    Thread.currentThread().interrupt();
 			}
 			garea.toggleLesson();
+			spawnQuestionByTypes();
 		}
 		
 		while (previous <= this.length) {
