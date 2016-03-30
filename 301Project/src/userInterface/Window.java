@@ -87,7 +87,7 @@ public class Window extends javax.swing.JFrame {
         playerhealth = new JLabel("Health: 100%");
         playerhealth.setSize(150,25);
         playerhealth.setFont(font2);
-        playerhealth.setForeground(HEALTHCOLOR);
+        playerhealth.setForeground(Color.green.darker());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -339,7 +339,9 @@ public class Window extends javax.swing.JFrame {
     	return this.IMatcher;
     }
     
-    
+    public JLabel getPlayerHealth() {
+    	return this.playerhealth;
+    }
 
     /**
      * @param args the command line arguments

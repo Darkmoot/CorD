@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,10 @@ public class Level {
 	
 	private ImageIcon icon;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson) {
+	private int player_health;
+	private JLabel PlayerHealth;
+	
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, JLabel PlayerHealth) {
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
@@ -46,7 +50,8 @@ public class Level {
 		this.numQuestions = 0;
 		// TODO: change this to parameter to allow variable level duration
 		
-		
+		this.PlayerHealth = PlayerHealth;
+		player_health = 100; //player health starts at 100%
 	}
 	
 	// return the system time in millis each question will be spawned at -  should 
@@ -101,6 +106,19 @@ public class Level {
 				ArrayList<Enemy> enemies =garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
+					// if enemy reaches bottom of screen reduce health
+					if ((enemy.getYval() == 410)) {
+						player_health -= 10;
+						if (player_health >= 0) {
+							if (player_health < 25) {
+								PlayerHealth.setForeground(Color.red);
+							} else if (player_health < 50) {
+								PlayerHealth.setForeground(Color.orange);
+							}
+							PlayerHealth.setText("Health: " + player_health + "%");
+
+						}
+					}
 				}
 				
 				garea.repaint();
@@ -238,5 +256,6 @@ public class Level {
 			this.garea.addPlayer(new Player(px, 400));
 			
 	}
+	
 	
 }
