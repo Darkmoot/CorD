@@ -34,6 +34,7 @@ public class Window extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private GameArea gArea;
     private JLabel scoreboard;
+    private JLabel health;
     private javax.swing.JScrollPane InputScroll;
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
@@ -88,6 +89,11 @@ public class Window extends javax.swing.JFrame {
         scoreboard = new JLabel("Score: 0");
         scoreboard.setSize(100,25);
         scoreboard.setFont(font2);
+        
+        //initial health 5
+        health = new JLabel("Health: 5");
+        health.setSize(90,25);
+        health.setFont(font2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -111,9 +117,6 @@ public class Window extends javax.swing.JFrame {
         	@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				
-				
-					
 				
 				
 					if (keyCode == KeyEvent.VK_ENTER) {
@@ -243,7 +246,10 @@ public class Window extends javax.swing.JFrame {
 		// add scoreboard to game panel
 		gArea.add(scoreboard);
 		scoreboard.setLocation(430, 10);
-
+		
+		// add health to game panel
+		gArea.add(health);
+		health.setLocation(430, 30);
 
         QuestionText.setColumns(20);
         QuestionText.setRows(5);
