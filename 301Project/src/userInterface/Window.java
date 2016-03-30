@@ -34,7 +34,7 @@ public class Window extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private GameArea gArea;
     private JLabel scoreboard;
-    private JLabel health;
+    private JLabel playerhealth;
     private javax.swing.JScrollPane InputScroll;
     private javax.swing.JTextArea InputText;
     private javax.swing.JScrollPane QuestionScroll;
@@ -51,6 +51,7 @@ public class Window extends javax.swing.JFrame {
     Color INPUTBACKGROUNDCOLOR = new Color(197,251,183);
     Color QUESTIONBACKGROUNDCOLOR = new Color(202, 193, 232);
     Color QUESTIONFONTCOLOR = new Color(88,0,176);
+    Color HEALTHCOLOR = new Color(128,128,255);
     Font font1 = new Font ("Verdana", 0 , 14);
     Font font2 = new Font ("Verdana", Font.BOLD , 14);
     // End of variables declaration    
@@ -89,11 +90,11 @@ public class Window extends javax.swing.JFrame {
         scoreboard = new JLabel("Score: 0");
         scoreboard.setSize(100,25);
         scoreboard.setFont(font2);
-        
-        //initial health 5
-        health = new JLabel("Health: 5");
-        health.setSize(90,25);
-        health.setFont(font2);
+
+        playerhealth = new JLabel("Health: 100%");
+        playerhealth.setSize(150,25);
+        playerhealth.setFont(font2);
+        playerhealth.setForeground(Color.green.darker());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -245,11 +246,12 @@ public class Window extends javax.swing.JFrame {
 		
 		// add scoreboard to game panel
 		gArea.add(scoreboard);
-		scoreboard.setLocation(430, 10);
+		scoreboard.setLocation(415, 10);
+		gArea.add(playerhealth);
+		playerhealth.setLocation(415, 30);
+
 		
-		// add health to game panel
-		gArea.add(health);
-		health.setLocation(430, 30);
+
 
         QuestionText.setColumns(20);
         QuestionText.setRows(5);
@@ -343,7 +345,9 @@ public class Window extends javax.swing.JFrame {
     	return this.IMatcher;
     }
     
-    
+    public JLabel getPlayerHealth() {
+    	return this.playerhealth;
+    }
 
     /**
      * @param args the command line arguments
