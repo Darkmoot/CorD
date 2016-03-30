@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 
 import userInterface.*;
 import backEnd.*;
+import backEnd.Question.type;
 
 public class Level {
 	
@@ -29,6 +30,7 @@ public class Level {
 	private long length;
 	private int numQuestions;
 	private Lesson lesson;
+	private List<type> qtypes;
 	
 	private Player player;
 	
@@ -37,7 +39,9 @@ public class Level {
 	private int player_health;
 	private JLabel PlayerHealth;
 	
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, JLabel PlayerHealth) {
+
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, JLabel PlayerHealth) {
+
 		
 		this.garea = gamearea;
 		this.QuestionPage = Question;
@@ -48,6 +52,7 @@ public class Level {
 		
 		this.length = 60000; // 60 secs in millisec
 		this.numQuestions = 0;
+		this.qtypes = qtypes;
 		// TODO: change this to parameter to allow variable level duration
 		
 		this.PlayerHealth = PlayerHealth;
@@ -67,6 +72,10 @@ public class Level {
 		
 		List<Long> sl = new ArrayList<>();
 		
+		System.out.println("1");
+		garea.setLesson(lesson);
+		System.out.println("2");
+		
 		if (garea.isLessonActive()) {
 			garea.repaint();
 			try {
@@ -75,6 +84,7 @@ public class Level {
 			    Thread.currentThread().interrupt();
 			}
 			garea.toggleLesson();
+			spawnQuestionByTypes();
 		}
 		
 		while (previous <= this.length) {
@@ -82,7 +92,7 @@ public class Level {
 			TimerTask spawner = new TimerTask() {
 				@Override
 				public void run() {
-					spawnQuestion();	
+					spawnQuestionByTypes();	
 				}
 			};
 			
@@ -103,7 +113,7 @@ public class Level {
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
-				ArrayList<Enemy> enemies =garea.getEnemies();
+				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
 					// if enemy reaches bottom of screen reduce health
@@ -143,6 +153,35 @@ public class Level {
 	
 	public int getNumQuestions() {
 		return numQuestions;
+	}
+	
+	public void spawnQuestionByTypes() {
+		
+		
+		System.out.println("x");
+		Question q = qc.getRandomQuestionByTypes(this.qtypes);
+		System.out.println(q);
+		
+		//add to the matcher
+		this.matcher.addToCurrentQuestions(q);
+		this.matcher.incrementNumIndex();
+		
+		//set  the index of that question reletive to the list
+		q.setIndex(this.matcher.getNumIndex());
+		
+		//add to the question window.
+		this.QuestionPage.append("\n" + this.matcher.getNumIndex() + ": "+ q.toString() + "\n");
+		System.out.println("the answer is " + q.getAnswer() + "\nlen is " + q.getAnswer().length());
+		
+		//Can also use Default Caret Bottom.
+		QuestionPage.setCaretPosition(QuestionPage.getDocument().getLength());
+		
+		//Spawn monsters (amount based on difficulty)
+		spawnEnemies(q.getDifficulty());
+		spawnPlayer();
+		if(garea.players.size() > 1){
+			garea.removePlayer(0);
+		}
 	}
 
 	//spawn random questions of a specific difficulty and spawns the appropriate number

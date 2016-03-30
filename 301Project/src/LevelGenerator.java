@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,8 +16,11 @@ import org.w3c.dom.Document;
 
 import userInterface.*;
 import backEnd.*;
+import backEnd.Question.type;
 
 public class LevelGenerator {
+	
+	
 	
 	// code moved to Level
 	// use this to generate the levels
@@ -31,10 +36,11 @@ public class LevelGenerator {
 		
 	}
 	
-	public Level createLevel() {
+	public Level createLevel(Lesson lesson, List<type> qtypes) {
 		
 		this.curLevel++;
-		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, new Lesson(0 , 0), this.window.getPlayerHealth());
+
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes, this.window.getPlayerHealth());
 		
 		
 		return level;

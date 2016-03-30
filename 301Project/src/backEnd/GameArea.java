@@ -19,14 +19,18 @@ public class GameArea extends JPanel {
 	public GameArea() {
 		enemies = new ArrayList<Enemy>();
 		players = new ArrayList<Player>();
-		currentLesson = new Lesson(0,0);
-		showLesson = true; //set to true initially
+		//currentLesson = new Lesson(0, 0);
+		showLesson = false; //set to true initially
+	}
+	
+	public void setLesson(Lesson l) {
+		this.currentLesson = l;
+		this.showLesson = true;
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		
 		
 		//Add a bool for whether to draw
 		//TODO add the paint for lessons
@@ -81,7 +85,6 @@ public class GameArea extends JPanel {
 
 	public void addPlayer(Player player) {
 		players.add(player);
-		System.out.println("These are the players: " + players);
 	}
 	
 	public void removeEnemy(int index) {
