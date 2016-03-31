@@ -138,9 +138,25 @@ public class Window extends javax.swing.JFrame {
 						InputText.append((String)unansweredFeedback.get(0));
 						
 						InputText.append("\n>>> ");
-						currentLine += (int)unansweredFeedback.get(1) + 1;
+						currentLine += (int) unansweredFeedback.get(1) + 1;
 						
 					}
+					else if (lastInput.trim().equals("startGame()")) {
+						if (gArea.isLessonActive()) {
+							gArea.toggleLesson();
+							InputText.append("\nStart the Game\n>>> ");
+							//	System.out.println(result);
+							currentLine+= 2;
+						}
+						else {
+							InputText.append("\nGame has started\n>>> ");
+							//	System.out.println(result);
+							currentLine+= 2;
+						}
+					}
+					
+					
+					
 					
 					else {
 					
@@ -184,7 +200,7 @@ public class Window extends javax.swing.JFrame {
 						currentLine+= 2;
 					} 
 					else {
-						InputText.append("\n" + resultFromMatching + "\n>>>");
+						InputText.append("\n" + resultFromMatching + "\n>>> ");
 						currentLine+= 2;
 					}
 				
