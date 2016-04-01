@@ -118,16 +118,16 @@ public class Level {
 					enemy.moveDown(1);
 					// if enemy reaches bottom of screen reduce health
 					if ((enemy.getYval() == 410)) {
-						player_health -= 10;
+						player_health -= 20;
 						if (player_health >= 0) {
 							if (player_health < 25) {
 								PlayerHealth.setForeground(Color.red);
-							} else if (player_health < 50) {
+							} else if (player_health < 55) {
 								PlayerHealth.setForeground(Color.orange);
 							}
 							PlayerHealth.setText("Health: " + player_health + "%");
 
-						}
+						} 
 					}
 				}
 				
