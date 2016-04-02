@@ -22,7 +22,8 @@ import userInterface.Window;
 public class Game {
 	
 	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
-	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/loops.jpg"};
+	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/Loops4.jpg", 
+		"/Lessons/Functions3.jpg", "/Lessons/StringsAndIndexes2.jpg", "/Lessons/TypesAndVariables1.jpg"	};
 	
 	public static void main(String[] args) {
 		
@@ -65,6 +66,7 @@ public class Game {
 					// also curently just using same question types and lesson
 					//w.setGameArea();
 					tt = Arrays.asList(levelTypes[level]);
+					level++;
 					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 					
 					times = curLevel.startLevel();
