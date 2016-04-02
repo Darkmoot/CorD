@@ -119,11 +119,15 @@ public class Level {
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
+				boolean need_to_remove= false;
+				int num_remove = 0;
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
 					// if enemy reaches bottom of screen reduce health
 					if ((enemy.getYval() == 410)) {
+						need_to_remove = true;
+						num_remove += 1;
 						player_health -= 20;
 						if (player_health >= 0) {
 							if (player_health < 25) {
@@ -136,7 +140,12 @@ public class Level {
 						} 
 					}
 				}
-				
+				if (need_to_remove) {
+					for (int i=0; i < num_remove; i++){
+						garea.removeEnemy(0);
+					}
+					
+				}
 				garea.repaint();
 			}
 		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
