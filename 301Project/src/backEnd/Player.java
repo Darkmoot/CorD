@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Player implements MovingSprite {
+public class Player implements Sprite {
 	
 	//The png image representation of our enemy
 	private BufferedImage image;
