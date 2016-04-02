@@ -23,6 +23,7 @@ public class Game {
 	
 	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
 
+
 	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/Loops4.jpg", 
 		"/Lessons/Functions3.jpg", "/Lessons/StringsAndIndexes2.jpg", "/Lessons/TypesAndVariables1.jpg"	};
 	
