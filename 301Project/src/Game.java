@@ -23,11 +23,11 @@ public class Game {
 	
 	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
 	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/loops.jpg"};
+	private static boolean gameover;
 	
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		
 		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lgen = new LevelGenerator(w, qc);
 		// Testing get question by type
@@ -41,6 +41,7 @@ public class Game {
 //		lt.add(type.CALL);
 //		lt.add(type.LIST);
 //		System.out.println(qc.getRandomQuestionByTypes(lt));
+		gameover = false;
 		int level = 0;
 		
 			
@@ -59,7 +60,12 @@ public class Game {
 			
 				// wait to check if no enemies left
 				// need to add checker to see if they lost too
-				if (w.getGameArea().getEnemies().size() == 0) {
+				if (gameover) {
+					// need to implement
+					//GameArea g = w.getGameArea();
+					
+				}
+				else if (w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
