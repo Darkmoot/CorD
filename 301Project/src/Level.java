@@ -78,17 +78,23 @@ public class Level {
 		garea.setLesson(lesson);
 		System.out.println("2");
 		
-		if (garea.isLessonActive()) {
+		while (garea.isLessonActive()) { //loop until player starts
 			garea.repaint();
-			try {
+		}
+		/*	try {
 				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			}
-			garea.toggleLesson();
-			spawnQuestionByTypes();
-		}
+			*/
+			//garea.toggleLesson();
+		//}
+		//else {
 		
+			
+		//}
+		
+		spawnQuestionByTypes();
 		while (previous <= this.length) {
 			
 			TimerTask spawner = new TimerTask() {
