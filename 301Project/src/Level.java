@@ -296,11 +296,11 @@ public class Level {
 		//For each level of difficulty of the question, add an additional enemy
 		while (i < qDifficulty) {
 			//Make a random x coordinate
-			int randX =  new Random().nextInt(486) + 20;
+			int randX =  new Random().nextInt(486);
 			//Reroll the random x value if it overlaps with previous enemy. Not foolproof
 			for (Enemy enemy: garea.getEnemies()) {
 				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
-					randX =  new Random().nextInt(486) + 20;
+					randX =  new Random().nextInt(486);
 				}
 			}
 			//Add the enemy to the game area
