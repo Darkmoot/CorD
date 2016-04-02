@@ -21,11 +21,11 @@ import userInterface.Window;
 
 public class Game {
 	
-	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
+	public static type[][] levelTypes = {{type.ARITHMETIC}, {type.VAR},{type.WHILE}, {type.FOR}, {type.LIST}};
 
 
-	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/Loops4.jpg", 
-		"/Lessons/Functions3.jpg", "/Lessons/StringsAndIndexes2.jpg", "/Lessons/TypesAndVariables1.jpg"	};
+	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/TypesAndVariables1.jpg", "/Lessons/while loops.jpg", "/Lessons/Loops4.jpg", 
+		 "/Lessons/StringsAndIndexes2.jpg"};
 	
 	private static boolean gameover;
 
