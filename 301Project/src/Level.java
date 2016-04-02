@@ -81,6 +81,7 @@ public class Level {
 		while (garea.isLessonActive()) { //loop until player starts
 			garea.repaint();
 		}
+		player_health = 100; 
 		PlayerHealth.setText("Health: " + player_health + "%");
 		PlayerHealth.setForeground(Color.GREEN.darker());
 		/*	try {
