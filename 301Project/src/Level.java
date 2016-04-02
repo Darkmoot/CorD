@@ -38,7 +38,7 @@ public class Level {
 	
 	private int player_health;
 	private JLabel PlayerHealth;
-	private boolean gameover;
+
 	
 
 	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, JLabel PlayerHealth) {
@@ -58,7 +58,7 @@ public class Level {
 		
 		this.PlayerHealth = PlayerHealth;
 		player_health = 100; //player health starts at 100%
-		gameover = false;
+
 	}
 	
 	// return the system time in millis each question will be spawned at -  should 
@@ -125,7 +125,7 @@ public class Level {
 				int num_remove = 0;
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
-					enemy.moveDown(10);
+					enemy.moveDown(1);
 					// if enemy reaches bottom of screen reduce health
 					if ((enemy.getYval() == 410)) {
 						need_to_remove = true;
@@ -140,9 +140,7 @@ public class Level {
 							PlayerHealth.setText("Health: " + player_health + "%");
 
 						} else {
-							gameover = true;
 							garea.setGameOver();
-							garea.repaint();
 						}
 					}
 				}
@@ -317,7 +315,4 @@ public class Level {
 			
 	}
 	
-	public boolean getgameover() {
-		return gameover;
-	}
 }

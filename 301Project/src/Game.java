@@ -45,7 +45,6 @@ public class Game {
 //		lt.add(type.CALL);
 //		lt.add(type.LIST);
 //		System.out.println(qc.getRandomQuestionByTypes(lt));
-		gameover = false;
 		int level = 0;
 		
 			
@@ -53,10 +52,12 @@ public class Game {
 		// curently level qtypes dont match with lessons
 		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 		List<Long> times = curLevel.startLevel();
+		GameArea g = w.getGameArea();
+		gameover = g.getGameOver();
 		//level ++;
 		
 		while (true) {
-			
+			gameover = g.getGameOver();
 			// should wait till last question is asked - currently it is going a bit early
 			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
 				System.out.println("time");
@@ -64,12 +65,8 @@ public class Game {
 			
 				// wait to check if no enemies left
 				// need to add checker to see if they lost too
-				if (gameover) {
-					// need to implement
-					//GameArea g = w.getGameArea();
-					
-				}
-				else if (w.getGameArea().getEnemies().size() == 0) {
+
+				if (!gameover && w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
