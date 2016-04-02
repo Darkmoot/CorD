@@ -21,7 +21,11 @@ import userInterface.Window;
 
 public class Game {
 	
+<<<<<<< HEAD
 	public static type[][] levelTypes = {{type.ARITHMETIC}, {type.VAR}, {type.WHILE}, {type.FOR}, {type.LIST}};
+=======
+	public static type[][] levelTypes = {{type.ARITHMETIC}, {type.VAR},{type.WHILE}, {type.FOR}, {type.LIST}};
+>>>>>>> 5c8aa72f6ab86ea148fa9f86410c4cc5124d0349
 
 
 	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/TypesAndVariables1.jpg", "/Lessons/while loops.jpg", "/Lessons/Loops4.jpg", 
@@ -72,6 +76,10 @@ public class Game {
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
 					//w.setGameArea();
+<<<<<<< HEAD
+=======
+					
+>>>>>>> 5c8aa72f6ab86ea148fa9f86410c4cc5124d0349
 					level++;
 					tt = Arrays.asList(levelTypes[level]);
 					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
