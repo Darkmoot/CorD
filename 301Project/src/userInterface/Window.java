@@ -141,7 +141,7 @@ public class Window extends javax.swing.JFrame {
 						currentLine += (int) unansweredFeedback.get(1) + 1;
 						
 					}
-					else if (lastInput.trim().equals("startGame()")) {
+					else if (lastInput.trim().equals("startLevel()")) {
 						if (gArea.isLessonActive()) {
 							gArea.toggleLesson();
 							InputText.append("\nStart the Game\n>>> ");
