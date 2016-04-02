@@ -72,8 +72,9 @@ public class Game {
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
 					//w.setGameArea();
-					tt = Arrays.asList(levelTypes[level]);
+					
 					level++;
+					tt = Arrays.asList(levelTypes[level]);
 					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 					
 					times = curLevel.startLevel();
