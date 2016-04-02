@@ -38,6 +38,7 @@ public class Level {
 	
 	private int player_health;
 	private JLabel PlayerHealth;
+
 	
 
 	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, JLabel PlayerHealth) {
@@ -57,6 +58,7 @@ public class Level {
 		
 		this.PlayerHealth = PlayerHealth;
 		player_health = 100; //player health starts at 100%
+
 	}
 	
 	// return the system time in millis each question will be spawned at -  should 
@@ -129,7 +131,7 @@ public class Level {
 						need_to_remove = true;
 						num_remove += 1;
 						player_health -= 20;
-						if (player_health >= 0) {
+						if (player_health > 0) {
 							if (player_health < 25) {
 								PlayerHealth.setForeground(Color.red);
 							} else if (player_health < 55) {
@@ -137,7 +139,9 @@ public class Level {
 							}
 							PlayerHealth.setText("Health: " + player_health + "%");
 
-						} 
+						} else {
+							garea.setGameOver();
+						}
 					}
 				}
 				if (need_to_remove) {
@@ -310,6 +314,5 @@ public class Level {
 			this.garea.addPlayer(new Player(px, 400));
 			
 	}
-	
 	
 }
