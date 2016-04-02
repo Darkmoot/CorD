@@ -15,17 +15,24 @@ public class GameArea extends JPanel {
 	//the list of our current lesson, could be changed to a single lesson maybe?
 	private Lesson currentLesson;
 	private boolean showLesson;
+	private boolean gameover;
+
 	
 	public GameArea() {
 		enemies = new ArrayList<Enemy>();
 		players = new ArrayList<Player>();
 		//currentLesson = new Lesson(0, 0);
 		showLesson = false; //set to true initially
+		gameover = false;
 	}
 	
 	public void setLesson(Lesson l) {
 		this.currentLesson = l;
 		this.showLesson = true;
+	}
+	
+	public void setGameOver() {
+		gameover = true;
 	}
 	
 	@Override
@@ -35,12 +42,18 @@ public class GameArea extends JPanel {
 		//Add a bool for whether to draw
 		//TODO add the paint for lessons
 		
-		if (showLesson) {
+		if (gameover) {
+			GameOver gameover_graphic = new GameOver();
+			g.drawImage(gameover_graphic.getImage(), gameover_graphic.getXCoor(),
+					gameover_graphic.getYCoor(),this.getSize().width,this.getSize().height,null);
+
+		} 
+		else if (showLesson){
 			g.drawImage(currentLesson.getImage(), currentLesson.getXCoor(),
 					currentLesson.getYCoor(),this.getSize().width,this.getSize().height,null);
 		}//only render the lesson if we have it set to true
+		
 		else {
-	
 			
 			for (Player player : players) {
 				//Add two more parameters after getYval to set image dimensions
@@ -78,6 +91,9 @@ public class GameArea extends JPanel {
 		return this.showLesson;
 	}
 	
+	public boolean getGameOver() {
+		return gameover;
+	}
 
 	public void addEnemy(Enemy enemy) {
 		enemies.add(enemy);

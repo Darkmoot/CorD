@@ -22,13 +22,17 @@ import userInterface.Window;
 public class Game {
 	
 	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
-	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/Loops4.jpg", 
+
+
+	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/Loops4.jpg", 
 		"/Lessons/Functions3.jpg", "/Lessons/StringsAndIndexes2.jpg", "/Lessons/TypesAndVariables1.jpg"	};
+	
+	private static boolean gameover;
+
 	
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		
 		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lgen = new LevelGenerator(w, qc);
 		// Testing get question by type
@@ -49,10 +53,12 @@ public class Game {
 		// curently level qtypes dont match with lessons
 		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 		List<Long> times = curLevel.startLevel();
+		GameArea g = w.getGameArea();
+		gameover = g.getGameOver();
 		//level ++;
 		
 		while (true) {
-			
+			gameover = g.getGameOver();
 			// should wait till last question is asked - currently it is going a bit early
 			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
 				System.out.println("time");
@@ -60,7 +66,8 @@ public class Game {
 			
 				// wait to check if no enemies left
 				// need to add checker to see if they lost too
-				if (w.getGameArea().getEnemies().size() == 0) {
+
+				if (!gameover && w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
