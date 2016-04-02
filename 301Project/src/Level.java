@@ -81,6 +81,8 @@ public class Level {
 		while (garea.isLessonActive()) { //loop until player starts
 			garea.repaint();
 		}
+		PlayerHealth.setText("Health: " + player_health + "%");
+		PlayerHealth.setForeground(Color.GREEN.darker());
 		/*	try {
 				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
 			} catch(InterruptedException ex) {
