@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import backEnd.*;
 import userInterface.*;
 
-public class playerHealth {
+public class PlayerHealth {
 	private Window w;
 	private GameArea g;
 	private JLabel PlayerHealth;
@@ -15,7 +15,7 @@ public class playerHealth {
 	private boolean gameover;
 	
 	
-	public playerHealth(Window w) {
+	public PlayerHealth(Window w) {
 		this.w = w;
 		g = w.getGameArea();
 		gameover = g.getGameOver();
@@ -30,40 +30,36 @@ public class playerHealth {
 		PlayerHealth.setForeground(Color.GREEN.darker());
 	}
 	
-	public void updateHealth(){
+	public void updateHealth(ArrayList<Enemy> enemies){
 
 		boolean need_to_remove= false;
 		int num_remove = 0;
-		ArrayList<Enemy> enemies = g.getEnemies();
-		if (enemies != null && enemies.size() > 0) {
-			for (Enemy enemy : enemies) {
-				if (enemy == null) {
-					break;
-				}
-				if ((enemy.reachedbottom())) {
-					need_to_remove = true;
-					num_remove += 1;
-					player_health -= 20;
-					if (player_health > 0) {
-						if (player_health < 25) {
-							PlayerHealth.setForeground(Color.red);
-						} else if (player_health < 55) {
-							PlayerHealth.setForeground(Color.orange);
-						}
-						PlayerHealth.setText("Health: " + player_health + "%");
-	
-					} else {
-						g.setGameOver();
+		for (Enemy enemy : enemies) {
+			
+			if ((enemy.reachedbottom())) {
+				need_to_remove = true;
+				num_remove += 1;
+				player_health -= 20;
+				if (player_health > 0) {
+					if (player_health < 25) {
+						PlayerHealth.setForeground(Color.red);
+					} else if (player_health < 55) {
+						PlayerHealth.setForeground(Color.orange);
 					}
+					PlayerHealth.setText("Health: " + player_health + "%");
+
+				} else {
+					g.setGameOver();
 				}
 			}
-			if (need_to_remove) {
-				for (int i=0; i < num_remove; i++){
-					g.removeEnemy(0);
-					g.repaint();
-				}
-				
+		}
+		if (need_to_remove) {
+			for (int i=0; i < num_remove; i++){
+				g.removeEnemy(0);
+				g.repaint();
 			}
-		}	
-	}
+			
+		}
+	}	
+	
 }

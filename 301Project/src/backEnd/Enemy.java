@@ -52,6 +52,6 @@ public class Enemy implements Sprite {
 	}
 	
 	public boolean reachedbottom() {
-		return yval>=410;
+		return yval >= 400;
 	}
 }
