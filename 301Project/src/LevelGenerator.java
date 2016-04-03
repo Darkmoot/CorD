@@ -40,7 +40,7 @@ public class LevelGenerator {
 		
 		this.curLevel++;
 
-		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes, this.window.getPlayerHealth());
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes);
 		
 		
 		return level;

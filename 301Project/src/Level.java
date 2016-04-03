@@ -35,13 +35,9 @@ public class Level {
 	private Player player;
 	
 	private ImageIcon icon;
-	
-	private int player_health;
-	private JLabel PlayerHealth;
 
-	
 
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, JLabel PlayerHealth) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes) {
 
 		
 		this.garea = gamearea;
@@ -55,9 +51,6 @@ public class Level {
 		this.numQuestions = 0;
 		this.qtypes = qtypes;
 		// TODO: change this to parameter to allow variable level duration
-		
-		this.PlayerHealth = PlayerHealth;
-		player_health = 100; //player health starts at 100%
 
 	}
 	
@@ -81,6 +74,7 @@ public class Level {
 		while (garea.isLessonActive()) { //loop until player starts
 			garea.repaint();
 		}
+
 		/*	try {
 				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
 			} catch(InterruptedException ex) {
@@ -121,34 +115,10 @@ public class Level {
 		
 		timer.schedule(new TimerTask() {
 			public void run() {
-				boolean need_to_remove= false;
-				int num_remove = 0;
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
-					// if enemy reaches bottom of screen reduce health
-					if ((enemy.getYval() == 410)) {
-						need_to_remove = true;
-						num_remove += 1;
-						player_health -= 20;
-						if (player_health > 0) {
-							if (player_health < 25) {
-								PlayerHealth.setForeground(Color.red);
-							} else if (player_health < 55) {
-								PlayerHealth.setForeground(Color.orange);
-							}
-							PlayerHealth.setText("Health: " + player_health + "%");
 
-						} else {
-							garea.setGameOver();
-						}
-					}
-				}
-				if (need_to_remove) {
-					for (int i=0; i < num_remove; i++){
-						garea.removeEnemy(0);
-					}
-					
 				}
 				garea.repaint();
 			}
