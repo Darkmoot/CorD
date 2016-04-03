@@ -53,18 +53,17 @@ public class Game {
 			
 		List<type> tt = Arrays.asList(levelTypes[level]);
 		// curently level qtypes dont match with lessons
-		gameover = w.getGameArea().getGameOver();
-		PlayerHealth health = new PlayerHealth(w);
-		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt, health);
+		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 		List<Long> times = curLevel.startLevel();
 	
-
+		gameover = w.getGameArea().getGameOver();
+		playerHealth health = new playerHealth(w);
 
 
 		while (true) {
 			
 			
-			//health.updateHealth();
+			health.updateHealth();
 			gameover = w.getGameArea().getGameOver();
 			// should wait till last question is asked - currently it is going a bit early
 			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
@@ -84,7 +83,7 @@ public class Game {
 					level++;
 					health.resetHealth();
 					tt = Arrays.asList(levelTypes[level]);
-					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt, health);
+					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 					times = curLevel.startLevel();
 					
 					

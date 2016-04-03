@@ -35,10 +35,9 @@ public class Level {
 	private Player player;
 	
 	private ImageIcon icon;
-	private PlayerHealth health;
 
 
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, PlayerHealth health) {
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes) {
 
 		
 		this.garea = gamearea;
@@ -52,8 +51,6 @@ public class Level {
 		this.numQuestions = 0;
 		this.qtypes = qtypes;
 		// TODO: change this to parameter to allow variable level duration
-		
-		this.health = health;
 
 	}
 	
@@ -123,7 +120,6 @@ public class Level {
 					enemy.moveDown(1);
 
 				}
-				health.updateHealth(enemies);
 				garea.repaint();
 			}
 		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
