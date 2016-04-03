@@ -117,7 +117,7 @@ public class Level {
 			public void run() {
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
-					enemy.moveDown(10);
+					enemy.moveDown(1);
 
 				}
 				garea.repaint();
