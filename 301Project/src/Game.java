@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -54,30 +55,40 @@ public class Game {
 		// curently level qtypes dont match with lessons
 		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 		List<Long> times = curLevel.startLevel();
-		GameArea g = w.getGameArea();
-		gameover = g.getGameOver();
-		//level ++;
-		
+	
+		gameover = w.getGameArea().getGameOver();
+		playerHealth health = new playerHealth(w);
+
+
 		while (true) {
-			gameover = g.getGameOver();
+			
+			
+			health.updateHealth();
+			gameover = w.getGameArea().getGameOver();
 			// should wait till last question is asked - currently it is going a bit early
 			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
 				System.out.println("time");
 				System.out.println(w.getGameArea().getEnemies().size());
-			
+					
+				
 				// wait to check if no enemies left
 				// need to add checker to see if they lost too
-
 				if (!gameover && w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
 					//w.setGameArea();
+					
+					
 					level++;
+					health.resetHealth();
 					tt = Arrays.asList(levelTypes[level]);
 					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
-					
 					times = curLevel.startLevel();
+					
+					
+
+					
 					//level ++;
 				}
 			}

@@ -50,4 +50,8 @@ public class Enemy implements MovingSprite {
 	public void moveDown(int num) {
 		yval += num;
 	}
+	
+	public boolean reachedbottom() {
+		return yval>=410;
+	}
 }
