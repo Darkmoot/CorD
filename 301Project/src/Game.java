@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -21,13 +22,19 @@ import userInterface.Window;
 
 public class Game {
 	
-	public static type[][] levelTypes = {{type.VAR}, {type.LIST}, {type.FOR}};
-	public static String[] lessonPaths = {"/Lessons/lesson2.jpg", "/Lessons/loops.jpg"};
+
+	public static type[][] levelTypes = {{type.ARITHMETIC}, {type.VAR}, {type.WHILE}, {type.FOR}, {type.LIST}};
+
+
+	public static String[] lessonPaths = {"/Lessons/lesson1.jpg", "/Lessons/TypesAndVariables1.jpg", "/Lessons/while loops.jpg", "/Lessons/Loops4.jpg", 
+		 "/Lessons/StringsAndIndexes2.jpg"};
+	
+	private static boolean gameover;
+
 	
 	public static void main(String[] args) {
 		
 		Window w = new Window();
-		
 		QuestionFactory qc = new QuestionCreatorFactory().getInstance();
 		LevelGenerator lgen = new LevelGenerator(w, qc);
 		// Testing get question by type
@@ -46,28 +53,43 @@ public class Game {
 			
 		List<type> tt = Arrays.asList(levelTypes[level]);
 		// curently level qtypes dont match with lessons
-		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
+		gameover = w.getGameArea().getGameOver();
+		PlayerHealth health = new PlayerHealth(w);
+		Level curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt, health);
 		List<Long> times = curLevel.startLevel();
-		//level ++;
-		
+	
+
+
+
 		while (true) {
 			
+			
+			//health.updateHealth();
+			gameover = w.getGameArea().getGameOver();
 			// should wait till last question is asked - currently it is going a bit early
 			if (System.currentTimeMillis() >= times.get(times.size() - 1) + 3000) {
 				System.out.println("time");
 				System.out.println(w.getGameArea().getEnemies().size());
-			
+					
+				
 				// wait to check if no enemies left
 				// need to add checker to see if they lost too
-				if (w.getGameArea().getEnemies().size() == 0) {
+				if (!gameover && w.getGameArea().getEnemies().size() == 0) {
 				
 					// clear stuff of screen here to start new level
 					// also curently just using same question types and lesson
 					//w.setGameArea();
-					tt = Arrays.asList(levelTypes[level]);
-					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt);
 					
+					
+					level++;
+					health.resetHealth();
+					tt = Arrays.asList(levelTypes[level]);
+					curLevel = lgen.createLevel(new Lesson(0, 0, lessonPaths[level]), tt, health);
 					times = curLevel.startLevel();
+					
+					
+
+					
 					//level ++;
 				}
 			}

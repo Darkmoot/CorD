@@ -35,12 +35,10 @@ public class Level {
 	private Player player;
 	
 	private ImageIcon icon;
-	
-	private int player_health;
-	private JLabel PlayerHealth;
-	
+	private PlayerHealth health;
 
-	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, JLabel PlayerHealth) {
+
+	public Level(JTextArea Question, inputMatcher matcher, GameArea gamearea, QuestionFactory qc, Lesson lesson, List<type> qtypes, PlayerHealth health) {
 
 		
 		this.garea = gamearea;
@@ -55,8 +53,8 @@ public class Level {
 		this.qtypes = qtypes;
 		// TODO: change this to parameter to allow variable level duration
 		
-		this.PlayerHealth = PlayerHealth;
-		player_health = 100; //player health starts at 100%
+		this.health = health;
+
 	}
 	
 	// return the system time in millis each question will be spawned at -  should 
@@ -76,17 +74,24 @@ public class Level {
 		garea.setLesson(lesson);
 		System.out.println("2");
 		
-		if (garea.isLessonActive()) {
+		while (garea.isLessonActive()) { //loop until player starts
 			garea.repaint();
-			try {
+		}
+
+		/*	try {
 				Thread.sleep(10000);                 //10000 milliseconds is ten seconds.
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			}
-			garea.toggleLesson();
-			spawnQuestionByTypes();
-		}
+			*/
+			//garea.toggleLesson();
+		//}
+		//else {
 		
+			
+		//}
+		
+		spawnQuestionByTypes();
 		while (previous <= this.length) {
 			
 			TimerTask spawner = new TimerTask() {
@@ -116,21 +121,9 @@ public class Level {
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
 					enemy.moveDown(1);
-					// if enemy reaches bottom of screen reduce health
-					if ((enemy.getYval() == 410)) {
-						player_health -= 10;
-						if (player_health >= 0) {
-							if (player_health < 25) {
-								PlayerHealth.setForeground(Color.red);
-							} else if (player_health < 50) {
-								PlayerHealth.setForeground(Color.orange);
-							}
-							PlayerHealth.setText("Health: " + player_health + "%");
 
-						}
-					}
 				}
-				
+				health.updateHealth(enemies);
 				garea.repaint();
 			}
 		}, 0, 1*250); //0 is the delay before the timerTask starts running, 1*250 is how often it goes off (meaning it goes off every quarter second)
@@ -277,11 +270,11 @@ public class Level {
 		//For each level of difficulty of the question, add an additional enemy
 		while (i < qDifficulty) {
 			//Make a random x coordinate
-			int randX =  new Random().nextInt(486) + 20;
+			int randX =  new Random().nextInt(486);
 			//Reroll the random x value if it overlaps with previous enemy. Not foolproof
 			for (Enemy enemy: garea.getEnemies()) {
 				if ((randX > enemy.getXval() - 20) && (randX < enemy.getXval() + 20)) {
-					randX =  new Random().nextInt(486) + 20;
+					randX =  new Random().nextInt(486);
 				}
 			}
 			//Add the enemy to the game area
@@ -295,6 +288,5 @@ public class Level {
 			this.garea.addPlayer(new Player(px, 400));
 			
 	}
-	
 	
 }
