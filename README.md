@@ -18,6 +18,6 @@ This game runs as a Java Application.
 
 ![Image of gameplay 2](https://github.com/csc301-winter-2016/project-team10/blob/master/screenshot2.png)
 
-![Image of lesson](https://github.com/csc301-winter-2016a/project-team10/blob/master/screenshot3.png)
+![Image of lesson](https://github.com/csc301-winter-2016/project-team10/blob/master/screenshot3.png)
 
 ![Image of gameover](https://github.com/csc301-winter-2016/project-team10/blob/master/screenshot4.png)
