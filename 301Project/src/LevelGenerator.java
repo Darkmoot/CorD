@@ -36,11 +36,11 @@ public class LevelGenerator {
 		
 	}
 	
-	public Level createLevel(Lesson lesson, List<type> qtypes) {
+	public Level createLevel(Lesson lesson, List<type> qtypes, PlayerHealth health) {
 		
 		this.curLevel++;
 
-		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes, this.window.getPlayerHealth());
+		Level level = new Level(this.window.getQuestionText(), this.window.getInputMatcher(), this.window.getGameArea(),  this.qf, lesson, qtypes, health);
 		
 		
 		return level;

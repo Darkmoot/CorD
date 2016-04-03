@@ -46,6 +46,8 @@
 		<question difficulty="2">
 			<ask>type(20 / 4) == type(10 // 2)</ask>
 			<answer>false</answer>
+			<types>
+				<VAR /></types>
 		</question>
 		<question difficulty="1">
 			<ask>name = 'Alice' \nname is type string.</ask>
