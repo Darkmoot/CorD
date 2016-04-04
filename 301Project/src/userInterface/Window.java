@@ -152,6 +152,7 @@ public class Window extends javax.swing.JFrame {
 						
 					}
 					else if (lastInput.trim().equals("startLevel()")) {
+						gArea.removeExplosion();
 						if (gArea.isLessonActive()) {
 							gArea.toggleLesson();
 							InputText.append("\nStart the Game\n>>> ");
@@ -198,11 +199,12 @@ public class Window extends javax.swing.JFrame {
 							gArea.removeEnemy(0);
 							gArea.addExplosion(new Effect(ex, ey));
 							
+							String audioFilePath = "sound/Pop.wav";
+					        AudioPlayerExample1 player = new AudioPlayerExample1();
+					        player.play(audioFilePath);	
+							
 						}
-						String audioFilePath = "sound/Psycho_Scream.wav";
-				        AudioPlayerExample1 player = new AudioPlayerExample1();
-				        player.play(audioFilePath);
-				        gArea.removeExplosion();
+									  
 					} 
 					
 					else if (resultFromMatching == "correct") {
