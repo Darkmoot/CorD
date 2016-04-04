@@ -196,15 +196,13 @@ public class Window extends javax.swing.JFrame {
 							int ex = gArea.getEnemies().get(0).getXval();
 							int ey = gArea.getEnemies().get(0).getYval();
 							gArea.removeEnemy(0);
-							//gArea.addExplosion(new Effect(ex, ey));
-							
-							
-							
+							gArea.addExplosion(new Effect(ex, ey));
 							
 						}
 						String audioFilePath = "sound/Psycho_Scream.wav";
 				        AudioPlayerExample1 player = new AudioPlayerExample1();
 				        player.play(audioFilePath);
+				        gArea.removeExplosion();
 					} 
 					
 					else if (resultFromMatching == "correct") {
