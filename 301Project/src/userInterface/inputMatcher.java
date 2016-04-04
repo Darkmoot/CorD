@@ -74,7 +74,6 @@ public class inputMatcher {
 	//Add a newly generated question into the set of current questions
 	public void addToCurrentQuestions(Question q) {
 		System.out.println(this.currentQuestions.size());
-		
 		this.currentQuestions.add(q);
 	}
 	

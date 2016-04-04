@@ -70,7 +70,7 @@ public class GameArea extends JPanel {
 			}
 			for (Effect explode : explosions) {
 				//Add two more parameters after getYval to set image dimensions
-				g.drawImage(explode.getImage(), explode.getXval(), explode.getYval(), 50, 33, null);
+				g.drawImage(explode.getImage(), explode.getXval(), explode.getYval(), 30, 37, null);
 			}
 		}
 	}
@@ -125,6 +125,8 @@ public class GameArea extends JPanel {
 		}
 	}
 	public void removeExplosion() {
+		while(explosions.size() != 0){
 		explosions.remove(0);
+		}
 	}
 }
