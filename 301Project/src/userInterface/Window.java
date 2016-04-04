@@ -7,15 +7,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
 
+import backEnd.AudioPlayerExample1;
+import backEnd.Effect;
 import backEnd.Enemy;
 import backEnd.GameArea;
 import backEnd.Question;
@@ -183,8 +193,18 @@ public class Window extends javax.swing.JFrame {
 						//Remove appropriate amount of enemies
 						int i;
 						for (i = 0; i < IMatcher.getScore() - prevScore; i++) {
+							int ex = gArea.getEnemies().get(0).getXval();
+							int ey = gArea.getEnemies().get(0).getYval();
 							gArea.removeEnemy(0);
+							//gArea.addExplosion(new Effect(ex, ey));
+							
+							
+							
+							
 						}
+						String audioFilePath = "sound/Psycho_Scream.wav";
+				        AudioPlayerExample1 player = new AudioPlayerExample1();
+				        player.play(audioFilePath);
 					} 
 					
 					else if (resultFromMatching == "correct") {

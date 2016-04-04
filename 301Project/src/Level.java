@@ -120,8 +120,7 @@ public class Level {
 			public void run() {
 				ArrayList<Enemy> enemies = garea.getEnemies();
 				for (Enemy enemy : enemies) {
-					enemy.moveDown(1);
-
+					enemy.moveDown(2);
 				}
 				health.updateHealth(enemies);
 				garea.repaint();
@@ -285,8 +284,7 @@ public class Level {
 	}
 		
 	public void spawnPlayer() {
-			this.garea.addPlayer(new Player(px, 400));
-			
+			this.garea.addPlayer(new Player(px, 400));	
 	}
 	
 }
