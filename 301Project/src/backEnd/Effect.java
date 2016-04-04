@@ -16,7 +16,7 @@ public class Effect implements Sprite {
 		
 	public Effect(int x, int y) {
 		try {
-			image = ImageIO.read(getClass(). getResourceAsStream("/Explosion.png"));
+			image = ImageIO.read(getClass(). getResourceAsStream("/Stone2.png"));
 		}
 		catch(IOException e) {
 			e.printStackTrace();
