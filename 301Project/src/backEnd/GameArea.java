@@ -3,6 +3,7 @@ package backEnd;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 
@@ -11,6 +12,7 @@ public class GameArea extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Enemy> enemies;
 	public ArrayList<Player> players;
+	public ArrayList<Effect> explosions;
 	
 	//the list of our current lesson, could be changed to a single lesson maybe?
 	private Lesson currentLesson;
@@ -21,6 +23,7 @@ public class GameArea extends JPanel {
 	public GameArea() {
 		enemies = new ArrayList<Enemy>();
 		players = new ArrayList<Player>();
+		explosions = new ArrayList<Effect>();
 		//currentLesson = new Lesson(0, 0);
 		showLesson = false; //set to true initially
 		gameover = false;
@@ -65,6 +68,10 @@ public class GameArea extends JPanel {
 				//Add two more parameters after getYval to set image dimensions
 				g.drawImage(enemy.getImage(), enemy.getXval(), enemy.getYval(), 30, 46, null);
 			}
+			for (Effect explode : explosions) {
+				//Add two more parameters after getYval to set image dimensions
+				g.drawImage(explode.getImage(), explode.getXval(), explode.getYval(), 50, 33, null);
+			}
 		}
 	}
 
@@ -103,6 +110,10 @@ public class GameArea extends JPanel {
 		players.add(player);
 	}
 	
+	public void addExplosion(Effect explode) {
+		explosions.add(explode);
+	}
+	
 	public void removeEnemy(int index) {
 		if (enemies.size() > index) {
 			enemies.remove(index);
@@ -112,5 +123,8 @@ public class GameArea extends JPanel {
 		if (players.size() > index) {
 			players.remove(index);
 		}
+	}
+	public void removeExplosion() {
+		explosions.remove(0);
 	}
 }
